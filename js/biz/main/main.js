@@ -331,11 +331,15 @@ $(document).ready(function () {
 	
 	//교육강좌 더보기
 	$("#examFind-cnt").click(function(){
+        let initialLength = $('#eduList li').length;//클릭전 아이템 개수 저장
 		if(Number($("#classCnt").val()) <= Number($("#examNum").val())){
 			return;
 		}
-
-		fn_getEduCourseList($("#searchCode").val(),$("#examNum").val());
+        fn_getEduCourseList($("#searchCode").val(), $("#examNum").val(), function() {
+            if(initialLength.length > 0){
+                $('#eduList li').eq(initialLength + 1).find('a').focus();
+            }
+        });
 	});
 	
 	var filter = "win16|win32|win64|mac|macintel";
@@ -389,6 +393,8 @@ $(document).ready(function () {
 	});
 	
 	$('button[name=procTab]').on("click", function(){
+        $('button[name=procTab]').removeClass('active');
+        $(this).addClass('active');
 		$('button[name=procTab]').attr("aria-selected","false");
 		$(this).attr("aria-selected","true");
 		
@@ -717,7 +723,10 @@ function fn_getEduCourseList(field,cnt)
 			false,
 			null,
 			null,
-			callback_EduCourseList);
+			function(response, statusText) {
+                callback_EduCourseList(response, statusText, callback); 
+            }
+        );
 }
 
 var callback_EduCourseList = function(response, statusText) {
@@ -895,6 +904,10 @@ var callback_EduCourseList = function(response, statusText) {
 				$("#classCnt").val(0);
 			}
 		$("#eduList").html(html);
+         // 추가된 항목에 포커스 설정을 위한 콜백 실행
+         if (typeof callback === "function") {
+            callback();
+        }
 
 	}
 }

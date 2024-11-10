@@ -587,7 +587,12 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <button type="button" class="like_btn" onclick="$(this).toggleClass('interest active');">관심항목 <span class="sound_only"> 추가하기</span>
+                                    <button type="button" class="like_btn" 
+                                        onclick="
+                                            $(this).toggleClass('interest active');
+                                            $(this).text($(this).hasClass('active') ? '관심항목 삭제하기' : '관심항목 추가하기');
+                                        ">
+                                        관심항목 추가하기
                                     </button>
                                 </div>
                             </div>
@@ -606,13 +611,15 @@
                                                 <tr>
                                                     <td class="h">만족도</td>
                                                     <td id="satisfn">
-                                                        <div style="display:inline;">
-                                                            <span class="sound_only">총 별 5개 중 4.4개</span>
-                                                            <div class="star-rating" style="margin-top: -4px;">
-                                                                <span class="yStar" style="width:88%"></span>
-                                                            </div>
+                                                        <div class="stars inline">
+                                                            <span class="sound_only">별 3개/5점 만점</span>
+                                                            <span class="star active"></span>
+                                                            <span class="star active"></span>
+                                                            <span class="star active"></span>
+                                                            <span class="star "></span>
+                                                            <span class="star "></span>
                                                         </div>
-                                                        <div style="display:inline;color: #666;">(참여인원 485명)</div>
+                                                        <div style="display:inline-block;color: #666;">(참여인원 485명)</div>
                                                     </td>
                                                 </tr>
                                             </tbody>

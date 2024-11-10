@@ -54,52 +54,6 @@
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/multiFile.js"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/biz/comm/validation.js"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/decorators/main/header.js"></script>
-        <style>
-            .lsort_box.checksort_box {
-                display: flex;
-                justify-content: flex-start;
-                align-content: space-around;
-            }
-
-            .searchLine+.searchLine {
-                margin-top: 5px;
-            }
-
-            /* @media (max-width: 1250px){
-		.list_wrap .lw_top .list_search .frm_txt.frmtxt2{width:100%;}
-		.design_check.inline.ckbox + .design_check.inline.ckbox{margin-left:0px; margin-top:10px;}
-		.lsort_box.checksort_box{flex-direction: column;}
-	} */
-            [type="checkbox"] {
-                width: 22px;
-                height: 22px;
-                accent-color: #2b52a5;
-                margin-left: 80px;
-                margin-top: 14px;
-                margin-right: 10px;
-                vertical-align: -6px;
-            }
-
-            @media (max-width: 1250px) {
-                [type="checkbox"] {
-                    width: 22px;
-                    height: 22px;
-                    accent-color: #2b52a5;
-                    margin-left: 0px;
-                    margin-top: 10px;
-                    margin-right: 10px;
-                    vertical-align: -6px;
-                }
-
-                .list_wrap .lw_top .list_search .frm_txt.frmtxt2 {
-                    width: 100%;
-                }
-
-                .lsort_box.checksort_box {
-                    flex-direction: column;
-                }
-            }
-        </style>
         <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-121804461-1"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/decorators/main/defaultDecorator.js"></script>
     </head>
@@ -604,7 +558,7 @@
                             <h3>채용정보</h3>
                         </div>
                         <div class="list_wrap">
-                            <div class="lw_top type2 clearfix">
+                            <div class="search_form clearfix">
                                 <!-- 실제 검색, 페이징에 사용되는 검색조건 -->
                                 <form name="frm" id="frm" onsubmit="return false;" method="post">
                                     <input type="hidden" id="currentPage" name="currentPage" value="1">
@@ -624,11 +578,10 @@
                                 <!-- 화면에 나타나는 검색조건. 검색조건 클릭 시 실제 검색조건 form으로 input값 복사 후 검색 실행 -->
                                 <form id="viewFrm" role="search" name="viewFrm" method="get" onsubmit="return false">
                                     <span class="sound_only">채용정보 검색</span>
-                                    <div>
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">검색어 <span class="sound_only"> 입력영역</span>
-                                            </div>
-                                            <div class="left lsort_box">
+                                    <div class="row">
+                                        <div class="sf_title" >검색어 <span class="sound_only"> 입력영역</span></div>
+                                        <div class="sf_content">
+                                            <div class="item">
                                                 <div class="list_sort">
                                                     <!-- common.js 230 -->
                                                     <a href="javascript:;" role="combobox" aria-expanded="false" aria-controls="searchCndSortList" class="sort_selected" style="cursor: pointer;">
@@ -636,48 +589,33 @@
                                                         <strong>근무조건</strong>
                                                         <span class="sound_only">선택됨</span>
                                                     </a>
-                                                    <div class="sort_list" style="display: none;" id="searchCndSortList">
-                                                        <input type="hidden" class="sort_val" name="searchCnd" value="">
-                                                        <div class="scroll-wrapper cnt design_scroll" style="position: relative;">
-                                                            <div class="cnt design_scroll scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px;">
-                                                                <span class="sound_only">드롭다운 목록</span>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="searchCnd" data-choice="0" class="sort_opt" style="cursor: pointer;">회사명</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="searchCnd" data-choice="1" class="sort_opt active" style="cursor: pointer;">근무조건</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="scroll-element scroll-x scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="width: 96px;"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="scroll-element scroll-y scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="top: 0px; height: 96px;"></div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="sort_list" style="display:none;" id="searchCndSortList">
+                                                        <input type="hidden" class="sort_val" name="searchCnd" value="0">
+                                                        <div class="cnt design_scroll">
+                                                            <span class="sound_only">드롭다운 목록</span>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="searchCnd" data-choice="0" class="sort_opt" style="cursor: pointer;">회사명</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="searchCnd" data-choice="1" class="sort_opt active" style="cursor: pointer;">근무조건</a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="left lsearch_box">
+                                            <div class="item">
                                                 <div class="list_search clearfix">
                                                     <input type="text" name="searchWrd" class="frm_txt frmtxt2" placeholder="검색어를 입력하세요." title="검색어를 입력하세요." onkeydown="javaScript:enterkey();" value="">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">지역별 <span class="sound_only"> 검색조건 선택영역</span>
-                                            </div>
-                                            <div class="left lsort_box">
+                                    </div>
+                                    <div class="row">
+                                        <div class="sf_title" >지역별 <span class="sound_only"> 검색조건 선택영역</span></div>
+                                        <div class="sf_content">
+                                            <div class="item">
                                                 <div class="list_sort">
                                                     <!-- common.js 230 -->
                                                     <a href="javascript:;" role="combobox" aria-expanded="false" aria-controls="locationSortList" class="sort_selected" style="cursor: pointer;">
@@ -685,96 +623,80 @@
                                                         <strong>광주</strong>
                                                         <span class="sound_only">선택됨</span>
                                                     </a>
-                                                    <div class="sort_list" style="display: none;" id="locationSortList">
-                                                        <input type="hidden" class="sort_val" name="location" value="">
-                                                        <div class="scroll-wrapper cnt design_scroll" style="position: relative;">
-                                                            <div class="cnt design_scroll scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px;">
-                                                                <span class="sound_only">드롭다운 목록</span>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="" class="sort_opt" style="cursor: pointer;">전체</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="강원" class="sort_opt" style="cursor: pointer;">강원</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="경기" class="sort_opt" style="cursor: pointer;">경기</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="경남" class="sort_opt" style="cursor: pointer;">경남</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="경북" class="sort_opt" style="cursor: pointer;">경북</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="광주" class="sort_opt active" style="cursor: pointer;">광주</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="대구" class="sort_opt" style="cursor: pointer;">대구</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="대전" class="sort_opt" style="cursor: pointer;">대전</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="미국" class="sort_opt" style="cursor: pointer;">미국</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="부산" class="sort_opt" style="cursor: pointer;">부산</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="북·중미" class="sort_opt" style="cursor: pointer;">북·중미</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="서울" class="sort_opt" style="cursor: pointer;">서울</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="세종" class="sort_opt" style="cursor: pointer;">세종</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="울산" class="sort_opt" style="cursor: pointer;">울산</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="인천" class="sort_opt" style="cursor: pointer;">인천</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="전국" class="sort_opt" style="cursor: pointer;">전국</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="전남" class="sort_opt" style="cursor: pointer;">전남</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="전북" class="sort_opt" style="cursor: pointer;">전북</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="제주" class="sort_opt" style="cursor: pointer;">제주</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="충남" class="sort_opt" style="cursor: pointer;">충남</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="location" data-choice="충북" class="sort_opt" style="cursor: pointer;">충북</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="scroll-element scroll-x scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="width: 89px;"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="scroll-element scroll-y scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="top: 0px; height: 113px;"></div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="sort_list" style="display:none;" id="searchCndSortList">
+                                                        <input type="hidden" class="sort_val" name="searchCnd" value="0">
+                                                        <div class="cnt design_scroll">
+                                                            <span class="sound_only">드롭다운 목록</span>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="" class="sort_opt" style="cursor: pointer;">전체</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="강원" class="sort_opt" style="cursor: pointer;">강원</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="경기" class="sort_opt" style="cursor: pointer;">경기</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="경남" class="sort_opt" style="cursor: pointer;">경남</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="경북" class="sort_opt" style="cursor: pointer;">경북</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="광주" class="sort_opt active" style="cursor: pointer;">광주</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="대구" class="sort_opt" style="cursor: pointer;">대구</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="대전" class="sort_opt" style="cursor: pointer;">대전</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="미국" class="sort_opt" style="cursor: pointer;">미국</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="부산" class="sort_opt" style="cursor: pointer;">부산</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="북·중미" class="sort_opt" style="cursor: pointer;">북·중미</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="서울" class="sort_opt" style="cursor: pointer;">서울</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="세종" class="sort_opt" style="cursor: pointer;">세종</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="울산" class="sort_opt" style="cursor: pointer;">울산</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="인천" class="sort_opt" style="cursor: pointer;">인천</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="전국" class="sort_opt" style="cursor: pointer;">전국</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="전남" class="sort_opt" style="cursor: pointer;">전남</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="전북" class="sort_opt" style="cursor: pointer;">전북</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="제주" class="sort_opt" style="cursor: pointer;">제주</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="충남" class="sort_opt" style="cursor: pointer;">충남</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="location" data-choice="충북" class="sort_opt" style="cursor: pointer;">충북</a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="left lsort_box">
+                                            <div class="item">
                                                 <div class="list_sort">
                                                     <!-- common.js 230 -->
                                                     <a href="javascript:;" role="combobox" aria-expanded="false" aria-controls="subLocationSortList" class="sort_selected" style="cursor: pointer;">
@@ -782,97 +704,98 @@
                                                         <strong>전체</strong>
                                                         <span class="sound_only">선택됨</span>
                                                     </a>
-                                                    <div class="sort_list" style="display: none;" id="subLocationSortList">
-                                                        <input type="hidden" class="sort_val" name="subLocation" value="">
-                                                        <div class="scroll-wrapper cnt design_scroll" style="position: relative;">
-                                                            <div class="cnt design_scroll scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 0px;">
-                                                                <span class="sound_only">드롭다운 목록</span>
-                                                                <ul id="subLocationUl"></ul>
+                                                    <div class="sort_list" style="display:none;" id="searchCndSortList">
+                                                        <input type="hidden" class="sort_val" name="searchCnd" value="0">
+                                                        <div class="cnt design_scroll">
+                                                            <span class="sound_only">드롭다운 목록</span>
+                                                            <ul id="subLocationUl"></ul>
+                                                        </div>
+                                                        <div class="scroll-element scroll-x">
+                                                            <div class="scroll-element_outer">
+                                                                <div class="scroll-element_size"></div>
+                                                                <div class="scroll-element_track"></div>
+                                                                <div class="scroll-bar" style="width: 96px;"></div>
                                                             </div>
-                                                            <div class="scroll-element scroll-x">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="width: 96px;"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="scroll-element scroll-y">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="top: 0px;"></div>
-                                                                </div>
+                                                        </div>
+                                                        <div class="scroll-element scroll-y">
+                                                            <div class="scroll-element_outer">
+                                                                <div class="scroll-element_size"></div>
+                                                                <div class="scroll-element_track"></div>
+                                                                <div class="scroll-bar" style="top: 0px;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">경력 <span class="sound_only"> 검색조건 선택영역(다중선택)</span>
-                                            </div>
-                                            <div class="left lsort_box checksort_box" role="group" style="line-height:50px;">
-                                                <div>
-                                                    <input type="checkbox" name="experienceLevelCk" id="experienceLevelCk0" value="0" tabindex="0" style="margin-left:0px;" checked="checked">
+                                    </div>
+                                    <div class="row">
+                                        <div class="sf_title" >경력 <span class="sound_only"> 검색조건 선택영역(다중선택)</span></div>
+                                        <div class="sf_content">
+                                            <div class="check_list_inline" role="group">
+                                                <div class="checkbox_item">
+                                                    <input type="checkbox" name="experienceLevelCk" id="experienceLevelCk0" value="0" tabindex="0" checked="checked">
                                                     <label for="experienceLevelCk0">신입</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="experienceLevelCk" id="experienceLevelCk1" value="1" tabindex="0" checked="checked">
                                                     <label for="experienceLevelCk1">경력</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="experienceLevelCk" id="experienceLevelCk2" value="2" tabindex="0" checked="checked">
                                                     <label for="experienceLevelCk2">경력무관</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="clearfix searchLine"><div class="lwt_title left" style="width:100px;">학력</div><div class="left lsort_box checksort_box"><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="0" tabindex="-1">고등학교졸업이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="1" tabindex="-1">대학졸업(2,3년)이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="2" tabindex="-1">대학교졸업(4년)이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="3" tabindex="-1">학력무관</label></div></div> -->
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">학력 <span class="sound_only"> 검색조건 선택영역(다중선택)</span>
-                                            </div>
-                                            <div class="left lsort_box checksort_box" role="group" style="line-height:50px;">
-                                                <div>
-                                                    <input type="checkbox" name="educationLevelCk" id="educationLevelCk0" value="0" tabindex="0" style="margin-left:0px;" checked="checked">
+                                    </div>
+                                    <!-- <div class="row"><div class="sf_title" >학력</div><div class="left lsort_box checksort_box"><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="0" tabindex="-1">고등학교졸업이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="1" tabindex="-1">대학졸업(2,3년)이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="2" tabindex="-1">대학교졸업(4년)이상</label><label class="design_check inline active educationLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="3" tabindex="-1">학력무관</label></div></div> -->
+                                    <div class="row">
+                                        <div class="sf_title" >학력 <span class="sound_only"> 검색조건 선택영역(다중선택)</span></div>
+                                        <div class="sf_content">
+                                            <div class="check_list_inline" role="group">
+                                                <div class="checkbox_item">
+                                                    <input type="checkbox" name="educationLevelCk" id="educationLevelCk0" value="0" tabindex="0" checked="checked">
                                                     <label for="educationLevelCk0">고등학교졸업이상</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="educationLevelCk" id="educationLevelCk1" value="1" tabindex="0" checked="checked">
                                                     <label for="educationLevelCk1">대학졸업(2,3년)이상</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="educationLevelCk" id="educationLevelCk2" value="2" tabindex="0" checked="checked">
                                                     <label for="educationLevelCk2">대학교졸업(4년)이상</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="educationLevelCk" id="educationLevelCk3" value="3" tabindex="0" checked="checked">
-                                                    <label for="educationLevelCk3">학력무관</label>
+                                                <label for="educationLevelCk3">학력무관</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="clearfix searchLine"><div class="lwt_title left" style="width:100px;">채용상태</div><div class="left lsort_box checksort_box"><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="0" tabindex="-1">상시채용</label><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="1" tabindex="-1">채용중</label><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="2" tabindex="-1">채용마감</label></div></div> -->
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">채용상태 <span class="sound_only"> 검색조건 선택영역(다중선택)</span>
-                                            </div>
-                                            <div class="left lsort_box checksort_box" role="group" style="line-height:50px;">
-                                                <div>
-                                                    <input type="checkbox" name="employmentSttsLevelCk" id="employmentSttsLevelCk0" value="0" tabindex="0" style="margin-left:0px;" checked="checked">
+                                    </div>
+                                    <!-- <div class="row"><div class="sf_title" >채용상태</div><div class="left lsort_box checksort_box"><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="0" tabindex="-1">상시채용</label><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="1" tabindex="-1">채용중</label><label class="design_check inline active employmentSttsLevelCk ckbox" style="line-height: 50px;" tabindex="0"><input type="checkbox" data-value="2" tabindex="-1">채용마감</label></div></div> -->
+                                    <div class="row">
+                                        <div class="sf_title" >채용상태 <span class="sound_only"> 검색조건 선택영역(다중선택)</span></div>
+                                        <div class="sf_content">
+                                            <div class="check_list_inline" role="group">
+                                                <div class="checkbox_item">
+                                                    <input type="checkbox" name="employmentSttsLevelCk" id="employmentSttsLevelCk0" value="0" tabindex="0" checked="checked">
                                                     <label for="employmentSttsLevelCk0">상시채용</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="employmentSttsLevelCk" id="employmentSttsLevelCk1" value="1" tabindex="0" checked="checked">
                                                     <label for="employmentSttsLevelCk1">채용중</label>
                                                 </div>
-                                                <div>
+                                                <div class="checkbox_item">
                                                     <input type="checkbox" name="employmentSttsLevelCk" id="employmentSttsLevelCk2" value="2" tabindex="0" checked="checked">
                                                     <label for="employmentSttsLevelCk2">채용마감</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix searchLine">
-                                            <div class="lwt_title left" style="width:100px;">
-                                                <span class="sound_only">검색결과 </span>정렬 <span class="sound_only"> 방법 선택영역</span>
-                                            </div>
-                                            <div class="left lsort_box">
+                                    </div>
+                                    <div class="row">
+                                        <div class="sf_title" ><span class="sound_only">검색결과 </span>정렬 <span class="sound_only"> 방법 선택영역</span></div>
+                                        <div class="sf_content">
+                                            <div class="item">
                                                 <div class="list_sort">
                                                     <!-- common.js 230 -->
                                                     <a href="javascript:;" role="combobox" aria-expanded="false" aria-controls="sortTypeSortList" class="sort_selected" style="cursor: pointer;">
@@ -880,46 +803,44 @@
                                                         <strong>마감일</strong>
                                                         <span class="sound_only">선택됨</span>
                                                     </a>
-                                                    <div class="sort_list" style="display:none;" id="sortTypeSortList">
-                                                        <input type="hidden" class="sort_val" name="sortType" value="">
-                                                        <div class="scroll-wrapper cnt design_scroll" style="position: relative;">
-                                                            <div class="cnt design_scroll scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px;">
-                                                                <span class="sound_only">드롭다운 목록</span>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="sortType" data-choice="0" class="sort_opt active" style="cursor: pointer;">마감일</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="sortType" data-choice="1" class="sort_opt" style="cursor: pointer;">회사명</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascipt:;" role="option" data-in="sortType" data-choice="2" class="sort_opt" style="cursor: pointer;">채용제목</a>
-                                                                    </li>
-                                                                </ul>
+                                                    <div class="sort_list" style="display:none;" id="searchCndSortList">
+                                                        <input type="hidden" class="sort_val" name="searchCnd" value="0">
+                                                        <div class="cnt design_scroll">
+                                                            <span class="sound_only">드롭다운 목록</span>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="sortType" data-choice="0" class="sort_opt active" style="cursor: pointer;">마감일</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="sortType" data-choice="1" class="sort_opt" style="cursor: pointer;">회사명</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascipt:;" role="option" data-in="sortType" data-choice="2" class="sort_opt" style="cursor: pointer;">채용제목</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="scroll-element scroll-x scroll-scrolly_visible">
+                                                            <div class="scroll-element_outer">
+                                                                <div class="scroll-element_size"></div>
+                                                                <div class="scroll-element_track"></div>
+                                                                <div class="scroll-bar"></div>
                                                             </div>
-                                                            <div class="scroll-element scroll-x scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="scroll-element scroll-y scroll-scrolly_visible">
-                                                                <div class="scroll-element_outer">
-                                                                    <div class="scroll-element_size"></div>
-                                                                    <div class="scroll-element_track"></div>
-                                                                    <div class="scroll-bar" style="top: 0px;"></div>
-                                                                </div>
+                                                        </div>
+                                                        <div class="scroll-element scroll-y scroll-scrolly_visible">
+                                                            <div class="scroll-element_outer">
+                                                                <div class="scroll-element_size"></div>
+                                                                <div class="scroll-element_track"></div>
+                                                                <div class="scroll-bar" style="top: 0px;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="lsearch_box" style="display: flex; justify-content: center;">
-                                            <div class="list_search">
-                                                <button type="button" class="frm_btn webfocus1" id="btnSearch" value="검색" style="cursor: pointer;">검색</button>
-                                            </div>
+                                    </div>
+                                    <div class="lsearch_box">
+                                        <div class="list_search">
+                                            <button type="button" class="frm_btn webfocus1" id="btnSearch" value="검색" style="cursor: pointer;">검색</button>
                                         </div>
                                     </div>
                                 </form>

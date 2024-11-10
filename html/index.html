@@ -8,18 +8,133 @@
 <meta name="description" content="" />
 <style>
 *{margin:0;padding:0;}
+body{padding:40px;}
+table{border-collapse: collapse;text-align: left;}
+table th{border:1px solid #ddd;background-color: #f1f1f1;padding:5px;}
+table td{border:1px solid #ddd;padding:5px;font-size:14px;}
 </style>
 </head>
 <body>
-<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100vh;gap:15px;">
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;min-height: 100vh;gap:15px;">
     <div>매치업 수정 리스트</div>
-    <a href="main.html">html/main.html </a>
-    <a href="matchup_intro.html">html/matchup_intro.html </a>
-    <a href="education_course_detail.html">html/education_course_detail.html  </a>
-    <a href="program_find_detail.html">html/program_find_detail.html</a>
-    <a href="employment_board.html">html/employment_board.html </a>
-    <a href="info_modify.html">html/info_modify.html </a>
-    <a href="newenergy.html">html/newenergy.html </a>
+    <table>
+        <tbody>
+            <tr>
+                <th><a href="main.html">html/main.html </a></th>
+                <td>교육강좌 별점 수정css(pdf 30p, 33p)<br/><br/>
+                    46page의 내용은 현재 기능이  탭버튼에서 focus된 후<br/> 옆 버튼으로 focus이동시 '선택된 카테고리는 OOO' & 버튼활성화가 되고 해당 리스트가 보이는데 보여진 리스트가 빈 리스트가 보여지고 있습니다.
+                    <br/>
+                    첫 전체 리스트말고 나머지 리스트는  빈 상태로 로드되고  탭버튼 클릭 시 리스트 업데이트되게 되어있어 
+                    해결방안을 저렇게 주신것 같습니다. <br/><br/>
+
+                    main.js에 fn_getCourseList(pVal); 를 클릭 이벤트에만 세팅하지 않고 focus, keydown, keyup 이벤트에서도 동작하게 변경해야 할듯합니다.<br/>
+                    제 환경에서는 테스트 불가하여 기능 확인 후 적용해주시면 해결될듯합니다. <br/><br/>
+
+                    53page 전체 강좌 더보기 클릭시 업데이트 된 항목으로 focus이동<br/>  .main.js에 비동기로 focus이동하도록 수정했습니다.
+                    제 환경에서는 정확하게 작동하는지 확인할 수 없어 스크립트만 넣어놨고. 확인후 반영해주시면됩니다.<br/><br/>
+                    $("#examFind-cnt").click(function() {<br/>
+                        let initialLength = $('#eduList li').length;//클릭전 아이템 개수 저장<br/>
+                        setTimeout(function() {<br/>
+                            $('#eduList li').eq(initialLength + 1).find('a').focus();<br/>
+                        }, 500);<br/>
+                    });<br/>
+                    운영사이트의 개발자도구 콘솔에서 이 임시 스크립트로 정상작동 확인 했습니다. 
+                    
+                </td>
+            </tr>
+            <tr>
+                <th><a href="user_regist.html">html/user_regist.html</a>회원가입과 회원정보수정 페이지 동일</th>
+                <td>모달창 포커스 이동 수정<br/>common.js 277~395  (pdf 74p)<br/><br/>
+                
+                    &lt;a href="javascript:;" class="lp_bg" data-focus="terms04-close" data-focus-next="terms04" style="cursor: pointer;"&gt;닫기&lt;/a&gt;<br/>
+                    ↓<br/>
+                    &lt;span class="lp_bg"&gt;&lt;/span&gt;<br/>
+                    해결방안과는 상관없지만 백그라운드가 a태그에 닫는버튼이라 <br/>focus된게 보이지 않는데 스크린리더에 잡혀서  닫기기능 빼고 포커스 안되게 수정했습니다.
+                </td>
+            </tr>
+            <tr>
+                <th><a href="matchup_intro.html">html/matchup_intro.html</a></th>
+                <td>css만 수정됨. 화살표,<br/>그라데이션 원형 bg  (pdf 18p, 35p)</td>
+            </tr>
+            <tr>
+                <th><a href="education_course_detail.html">html/education_course_detail.html</a></th>
+                <td>관심항목 추가하기,<br/>첨부파일 아이콘 이미지 수정,<br/>연관 평가일정 span.cnt 빠진것 추가(pdf 31p, 39p)</td>
+            </tr>
+            <tr>
+                <th><a href="program_find_detail.html">html/program_find_detail.html</a></th>
+                <td>관심항목 추가하기,<br/>만족도 별 수정(pdf 31p, 39p)</td>
+            </tr>
+            <tr>
+                <th><a href="employment_board.html">html/employment_board.html </a></th>
+                <td>location 홈 아이콘 이미지 수정,<br/>
+                검색 폼 디자인 수정(pdf 32p, 34p, 36p)</td>
+            </tr>
+            <tr>
+                <th><a href="info_modify.html">html/info_modify.html </a></th>
+                <td>성별 폰트색상 체크이미지,<br/>하단 수신동의 radio태그 수정<br/>input:focus 색상 수정<br/>
+                    input하단 문구 수정( -연락 가능한 번호로 정확하게 입력해주세요.) (pdf 40p)</td>
+            </tr>
+            <tr>
+                <th><a href="newenergy.html">html/newenergy.html </a></th>
+                <td>/images/matchup/v1/field_img_newenergy1.jpg 이미지 변경<br/>
+                캐시이슈 .jpg?v241110  이런식으로 적용</td>
+            </tr>
+            <tr>
+                <th><a href="add_board_article.html">html/add_board_article.html </a></th>
+                <td>/images/matchup/v1/field_img_newenergy1.jpg shift+tap시 초점이 헤더에 가리는 문제<br/>
+                head태그 안에 스크립트 참고해주세요<br/>
+                로컬에서 에디터 보안이슈로 적용불가해 input태그 여러개로 대체했습니다.
+                (pdf 43p)</td>
+            </tr>
+            <tr>
+                <th><a href="location.html">html/location.html </a></th>
+                <td>지도 건너띄기 클릭 시 지하철이용이 헤더에 가리는 문제 수정. <br/>
+                    버튼 스타일링 했고 
+                    지도 건너띄기 버튼 바로 밑에 스크립트 추가했습니다. 확인 후 페이지 하단으로 스크립트 이동해주세요.
+                (pdf 49p)</td>
+            </tr>
+
+            <tr>
+                <th>못본 페이지에 checkbox radio<br/> 있을 경우 자동으로 for id적용</th>
+                <td>
+                    <code>
+                        // &lt;label&gt;&lt;input type="checkbox"&gt;&lt;/label&gt; 수정되지 않은  이런형식이 남아있을 경우 스크립트로 해결<br/>
+                        document.addEventListener("DOMContentLoaded", function () { <br/>
+                            const usedIds = new Set();<br/>
+                            const inputs = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');<br/><br/>
+                        
+                            inputs.forEach((input, index) => {<br/>
+                                const label = input.closest('label') || document.querySelector(`label[for="${input.id}"]`);<br/><br/>
+                        
+                                // input에 id가 없으면 고유한 id 생성 후 추가<br/>
+                                if (!input.id) {<br/>
+                                    let uniqueId;<br/>
+                                    do {<br/>
+                                        uniqueId = `${input.type}_${Math.floor(Math.random() * 1000000)}_${index}`;<br/>
+                                    } while (usedIds.has(uniqueId));<br/><br/>
+                        
+                                    input.id = uniqueId;<br/>
+                                    usedIds.add(uniqueId);<br/>
+                                } else {<br/>
+                                    usedIds.add(input.id);<br/>
+                                }<br/><br/>
+                        
+                                // label이 존재하고 label에 for가 없는 경우, input의 id를 for로 추가<br/>
+                                if (label && !label.hasAttribute('for')) {<br/>
+                                    label.setAttribute('for', input.id);<br/>
+                                }<br/>
+                            });<br/>
+                        });
+                    </code>
+                </td>
+            </tr>
+
+            
+        </tbody>
+    </table>
+    
 </div>
+
+
 </body>
 </html>

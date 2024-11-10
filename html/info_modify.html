@@ -1100,7 +1100,7 @@
                                                     <input type="hidden" id="endHpNo" name="endHpNo">
                                                     <input id="hpNo" name="hpNo" type="tel" maxlength="11" class="memorize" placeholder="- 없이 숫자만 입력 " value="" style="border: 1px solid #777777; color:#000000;">
                                                 </div>
-                                                <p style="padding:5px 0px 0px 0px;font-size: 12px;color: #999999;">- 연락 가능한 번호로 정확하게 입력해주세요.</p>
+                                                <small class="form_hint">- 연락 가능한 번호로 정확하게 입력해주세요.</small>
                                             </div>
                                             <div class="row hrz_pc">
                                                 <label for="education" class="tit">최종학력</label>
@@ -1324,13 +1324,17 @@
                                             <div class="row hrz_pc hrz_mb10">
                                                 <strong class="tit">수신동의</strong>
                                                 <div class="ip_group">
-                                                    <div class="check_box" style="margin-top: 17px;">
-                                                        <input type="hidden" id="emailAgree" name="emailAgree" value="">
-                                                        <input type="hidden" id="smsAgree" name="smsAgree" value="">
-                                                        <label for="sms-check" class=" inline ">
-                                                            <input id="sms-check" class="memorize" type="checkbox"> SMS </label>
-                                                        <label for="email-check" class=" inline">
-                                                            <input id="email-check" class="memorize" type="checkbox" style="margin-left: 50px;"> 이메일 </label>
+                                                    <input type="hidden" id="emailAgree" name="emailAgree" value="">
+                                                    <input type="hidden" id="smsAgree" name="smsAgree" value="">
+                                                    <div class="check_list_inline">
+                                                        <div class="checkbox_item">
+                                                            <input id="sms-check" class="memorize" type="checkbox">
+                                                            <label for="sms-check">SMS</label>
+                                                        </div>
+                                                        <div class="checkbox_item">
+                                                            <input id="email-check" class="memorize" type="checkbox">
+                                                            <label for="email-check">이메일</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

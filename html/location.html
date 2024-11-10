@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/normalize.css" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/common.css?20231211" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/layout.css?20231211" />
-        <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/content.css?version=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/matchup/v1/content.css?version=1.0" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/jquery-ui.css" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/jquery.scrollbar.css" />
         <!-- <link rel="stylesheet" href="https://www.matchup.kr/css/style_menu2.css"    type='text/css'	media='all' /> -->
@@ -511,8 +511,16 @@
                             <h3>오시는 길</h3>
                         </div>
                         <div>
-                            <a href="#wayBox">지도 건너띄기</a>
+                            <a href="#wayBox" id="skipToMap">지도 건너띄기</a>
                         </div>
+                        <script>
+                            $('#skipToMap').on('click', function(e) {
+                                e.preventDefault();
+                                var target = $('#wayBox');
+                                var headerHeight = $('#header').outerHeight() + 20;
+                                $('html, body').scrollTop(target.offset().top - headerHeight);
+                            });
+                        </script>
                         <!-- 					<div id="map" style="width:100%;height:300px;"></div> -->
                         <!-- <a style="cursor:hand;" href="https://map.kakao.com/?urlX=506647&urlY=1106940&itemId=10036896&q=%EA%B5%AD%EA%B0%80%ED%8F%89%EC%83%9D%EA%B5%90%EC%9C%A1%EC%A7%84%ED%9D%A5%EC%9B%90&srcid=10036896&map_type=TYPE_MAP&from=roughmap" target="_blank" ><img src="../images/main/map.png"  alt="국가평생교육진흥원" title="국가평생교육 진흥원 위치" style="width: 100%; height:400px" /></a> -->
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.4193242333267!2d126.97490073736309!3d37.568742500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca1486e38f605%3A0x2ed6ba00dd98bc97!2z6rWt6rCA7Y-J7IOd6rWQ7Jyh7KeE7Z2l7JuQ!5e0!3m2!1sko!2skr!4v1685076235504!5m2!1sko!2skr" title="오시는길" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
