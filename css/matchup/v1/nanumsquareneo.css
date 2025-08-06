@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "NanumSquareNeo";
+    font-weight: 100;
+    font-style: normal;
+    src: local("NanumSquareNeoTTF aLt"),
+    url("../../..../../../font/matchup/v1/NanumSquareNeoTTF-aLt.woff2") format("woff2"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-aLt.woff") format("woff"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-aLt.eot") format("opentype"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-aLt.otf") format("truetype");
+  }
+  
+  @font-face {
+    font-family: "NanumSquareNeo";
+    font-weight: 300;
+    font-style: normal;
+    src: local("NanumSquareNeoTTF bRg"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-bRg.woff2") format("woff2"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-bRg.woff") format("woff"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-bRg.eot") format("opentype"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-bRg.otf") format("truetype");
+  }
+  
+  @font-face {
+    font-family: "NanumSquareNeo";
+    font-weight: 500;
+    font-style: normal;
+    src: local("NanumSquareNeoTTF cBd"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-cBd.woff2") format("woff2"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-cBd.woff") format("woff"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-cBd.eot") format("opentype"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-cBd.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "NanumSquareNeo";
+    font-weight: 700;
+    font-style: normal;
+    src: local("NanumSquareNeoTTF dEb"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-dEb.woff2") format("woff2"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-dEb.woff") format("woff"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-dEb.eot") format("opentype"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-dEb.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "NanumSquareNeo";
+    font-weight: 800;
+    font-style: normal;
+    src: local("NanumSquareNeoTTF eHv"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-eHv.woff2") format("woff2"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-eHv.woff") format("woff"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-eHv.eot") format("opentype"),
+    url("../../../font/matchup/v1/NanumSquareNeoTTF-eHv.otf") format("opentype");
+  }

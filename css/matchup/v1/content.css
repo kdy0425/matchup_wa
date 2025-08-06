@@ -38,10 +38,6 @@
 .webfocus1:focus-visible{outline:1px solid black; outline-offset: 3px !important;}
 .webfocus2:focus-visible{outline:1px solid white !important; outline-offset: 3px !important;}
 
-input::placeholder{
-	font-weight:bold;
-	font-family:NanumBarunGothic, Dotum, Arial, Tahoma, sans-serif, serif
-}
 input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder,
@@ -451,7 +447,7 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .paging a.pg_end{background-image:url('https://www.matchup.kr/images/matchup/v1/pg_end.png');}
 .paging a.pg_num{overflow: hidden;text-align:center;border:1px solid #d0d0d0;color:#666;font-size:1.3rem;padding:0 4px;min-width:30px;height:30px;line-height:30px;color:#666;}
 .paging a.pg_num.active{background-color:#000;border:1px solid #000;color:#fff;}
-
+.paging a.pg_num:focus{outline:1px solid black;outline-offset:3px !important;}
 @media (min-width: 1250px) {
 	.list_wrap .lw_top .left{float:left;}
 	.list_wrap .lw_top .right{float:right;}
@@ -2470,8 +2466,9 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 .check_list_inline{display:flex;flex-wrap: wrap;}
 .check_list_inline .checkbox_item{margin:4px 30px 4px 0;}
 .checkbox_item{display: inline-flex;align-items: center;}
-[type="checkbox"] {width: 20px;height: 20px;accent-color: #2b52a5;vertical-align: middle;margin-right:8px;}
-[type="radio"] {width: 20px;height: 20px;accent-color: #2b52a5;vertical-align: middle;margin-right:8px;}
+[type="checkbox"] {width: 20px;height: 20px;background-color:#fff;accent-color: #284FA2;vertical-align: middle;margin-right:8px;border-radius:2px;border:1px solid #717171;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+[type="checkbox"]:checked{background-position:center center;background-repeat:no-repeat;background-color: #284FA2;background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m12 1.5-6.581 7L2 4.864' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+[type="radio"] {width: 20px;height: 20px;accent-color: #284FA2;vertical-align: middle;margin-right:8px;}
 [type="checkbox"] + label{}
 .search_form{background-color: #f8f8f8;padding:30px;margin-bottom:30px;}
 .search_form .row{display: flex;align-items: start;}
@@ -2483,7 +2480,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 .search_form .list_sort .sort_selected{overflow:hidden;display:block;border:1px solid #d0d0d0;height:50px;line-height:48px;padding-left:18px;border-radius:2px;font-size:14px;font-weight:300;color:#333;background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;background-color:#fff;}
 .search_form .sort_list{width:100%;max-height: 301px;top: 49px;}
 .search_form .sort_list .cnt{max-height: 301px;}
-.search_form .list_search .frm_txt{float:left;height:50px;border:1px solid #d0d0d0;border-radius:2px;width:250px;padding-left:18px;}
+.search_form .list_search .frm_txt{float:left;height:50px;border:1px solid #d0d0d0;border-radius:2px;width:250px;padding-left:18px;font-weight:300;}
 .search_form .list_search .frm_txt::placeholder{color:#717171;opacity:1;}
 .search_form .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;margin-top:10px;}
 .search_form .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;display: block;margin:10px auto 0;}

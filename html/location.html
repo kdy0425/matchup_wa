@@ -10,7 +10,7 @@
         <meta name="description" content="4차 산업혁명시대 대비 직무교육 프로그램. 매치업 소개, 운영분야, 교육과정, 인증평가 안내">
         <title id="titleId">매치업 Match業</title>
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/common.css?20231211" />
+        <link rel="stylesheet" type="text/css" href="../css/matchup/v1/common.css?20231211" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/layout.css?20231211" />
         <link rel="stylesheet" type="text/css" href="../css/matchup/v1/content.css?version=1.0" />
         <link rel="stylesheet" type="text/css" href="https://www.matchup.kr/css/matchup/v1/jquery-ui.css" />
@@ -30,24 +30,24 @@
 								<script type='text/javascript' src="https://www.matchup.kr/js/matchup/v1/respond.min.js"></script>
 								<![endif]-->
         <script type='text/javascript' src="https://www.matchup.kr/js/matchup/v1/jquery-1.11.3.min.js"></script>
-        <script type='text/javascript' src='/js/matchup/v1/jqueryb8ff.js'></script>
-        <script type='text/javascript' src='/js/matchup/v1/jquery-migrate.min330a.js'></script>
-        <script type='text/javascript' src='/js/matchup/v1/common7867.js?ver=2.0'></script>
-        <script type='text/javascript' src='/js/matchup/v1/commonb7db.js'></script>
-        <script type='text/javascript' src='/js/matchup/v1/public_common.js'></script>
-        <script type='text/javascript' src='/js/matchup/v1/cdata.js'></script>
-        <script type='text/javascript' src='/js/matchup/v1/skip-link-focus-fix5152.js?ver=1.0'></script>
-        <script type='text/javascript' src='/js/matchup/v1/navigation5152.js?ver=1.0'></script>
-        <script type='text/javascript' src='/js/matchup/v1/global5152.js?ver=1.0'></script>
-        <script type='text/javascript' src='/js/matchup/v1/jquery.scrollTo431f.js?ver=2.1.2'></script>
-        <script type='text/javascript' src='/js/matchup/v1/jquery.min.moon.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/jqueryb8ff.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/jquery-migrate.min330a.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/common7867.js?ver=2.0'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/commonb7db.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/public_common.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/cdata.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/skip-link-focus-fix5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/navigation5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/global5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/jquery.scrollTo431f.js?ver=2.1.2'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/jquery.min.moon.js'></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/jquery-ui.js"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/jquery.form.js"></script>
         <script type="text/javascript" src="../js/matchup/v1/trionsoft_v0.1.js"></script>
         <script type='text/javascript' src="https://www.matchup.kr/js/matchup/v1/jquery-ui.min.js"></script>
         <script type='text/javascript' src="https://www.matchup.kr/js/matchup/v1/jquery.scrollbar.min.js"></script>
         <script type='text/javascript' src="https://www.matchup.kr/js/matchup/v1/slick.js"></script>
-        <script type='text/javascript' src='/js/matchup/v1/commFunc.js'></script>
+        <script type='text/javascript' src='https://www.matchup.kr/js/matchup/v1/commFunc.js'></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/popup.js"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/comm.js?ver=1.0"></script>
         <script type="text/javascript" src="https://www.matchup.kr/js/matchup/v1/multiFile.js"></script>
@@ -519,6 +519,7 @@
                                 var target = $('#wayBox');
                                 var headerHeight = $('#header').outerHeight() + 20;
                                 $('html, body').scrollTop(target.offset().top - headerHeight);
+                                target.attr('tabindex', '-1').focus();
                             });
                         </script>
                         <!-- 					<div id="map" style="width:100%;height:300px;"></div> -->
