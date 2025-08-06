@@ -1,0 +1,963 @@
+<html lang="ko">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
+        <title>Match業 관리시스템 :: 관리자관리</title>
+        <!--jquery default js-->
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery.1.8.2.min.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/form/jquery.form.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/url/jquery.url.packed.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/selectboxes/jquery.selectboxes.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/maskPlugin/jquery.maskedinput-1.2.2.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/markupPlugin/jquery.li-scroller.1.0.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/json2.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/displayTagAjax.js?ver=1.1"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/trionsoft_v0.1.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/gibberish-aes.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/comm.js?version=20240828"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/validation.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/workSearch.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/korToEng.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/inputUtil.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/multiFile.js?version=20230719"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/popup.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/font.css">
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/common.css">
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/layout.css">
+        <link rel="stylesheet" type="text/css" href="./css/mng/jquery-ui.css">
+        <script type="text/javaScript" src="https://edu.matchup.kr/js/biz/course/courseReqDetail.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/decorators/defaultDecorator.js"></script>
+    </head>
+    <body>
+        <div id="wrap">
+            <!-- 2019.10.29 김다혜 전체메뉴 추가 -->
+            <!-- 전체메뉴 start -->
+            <div class="pop_menu" style="display:none;">
+                <div class="pmenu_title">
+                    <h5>전체메뉴</h5>
+                    <a href="javascript:fnSiteMapHide();" class="btn_pop_close" style="cursor: pointer;">창닫기</a>
+                </div>
+                <ul class="pmenu_box">
+                    <li>
+                        <p class="pmenu_stitle"> 회원관리 </p>
+                        <a href="javascript:fn_subPageMove('5101000','/memberList.do');" style="cursor: pointer;">회원정보</a>
+                        <a href="javascript:fn_subPageMove('5102000','/dormancyList.do');" style="cursor: pointer;">휴면회원이력</a>
+                        <a href="javascript:fn_subPageMove('5104000','/memberInfoList.do');" style="cursor: pointer;">회원정보이관</a>
+                        <a href="javascript:fn_subPageMove('5105000','/studentHoldList.do');" style="cursor: pointer;">수강자등록보류</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 기관관리 </p>
+                        <a href="javascript:fn_subPageMove('5301000','/companyList.do');" style="cursor: pointer;">기관정보</a>
+                        <a href="javascript:fn_subPageMove('5302000','/managerList.do');" style="cursor: pointer;">관리자정보</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 직무관리 </p>
+                        <a href="javascript:fn_subPageMove('5201000','/jobReqList.do');" style="cursor: pointer;">직무</a>
+                        <a href="javascript:fn_subPageMove('5202000','/fieldDetailjobList.do');" style="cursor: pointer;">세부직무</a>
+                        <a href="javascript:fn_subPageMove('5203000','/jobCourseList.do');" style="cursor: pointer;">직무별필수교육</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 프로그램 관리 </p>
+                        <a href="javascript:fn_subPageMove('6201000','/courseReqList.do');" style="cursor: pointer;">프로그램</a>
+                        <a href="javascript:fn_subPageMove('6202000','/classReqList.do');" style="cursor: pointer;">운영회차 </a>
+                        <a href="javascript:fn_subPageMove('6203000','/studentReceiptClassList.do');" style="cursor: pointer;">수강생정보</a>
+                        <a href="javascript:fn_subPageMove('6205000','/personalEduPassList.do');" style="cursor: pointer;">개인별이수현황</a>
+                        <a href="javascript:fn_subPageMove('6210000','/fieldEduPassList.do');" style="cursor: pointer;">분야별이수현황</a>
+                        <a href="javascript:fn_subPageMove('6206000','passPrintStatus.do');" style="cursor: pointer;">이수증발급현황</a>
+                        <a href="javascript:fn_subPageMove('6209000','/orgSatisfactionSurveyList.do');" style="cursor: pointer;">교육기관 만족도 조사</a>
+                    </li>
+                </ul>
+                <ul class="pmenu_box">
+                    <li>
+                        <p class="pmenu_stitle"> 인증평가관리 </p>
+                        <a href="javascript:fn_subPageMove('5401000','/evaluationReqList.do');" style="cursor: pointer;">인증평가정보</a>
+                        <a href="javascript:fn_subPageMove('5407000','/evaluationReceiptList.do');" style="cursor: pointer;">인증평가결과</a>
+                        <a href="javascript:fn_subPageMove('5405000','/evaluationPrintList.do');" style="cursor: pointer;">인증서발급현황</a>
+                        <a href="javascript:fn_subPageMove('5409000','/evaluationSurveyList.do');" style="cursor: pointer;">인증평가 설문조사</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 통계 </p>
+                        <a href="javascript:fn_subPageMove('5503000','/statisticsStudentPass.do');" style="cursor: pointer;">수강신청</a>
+                        <a href="javascript:fn_subPageMove('5506000','/statisticsPrintPass.do');" style="cursor: pointer;">발급현황</a>
+                        <a href="javascript:fn_subPageMove('5507000','/statisticsNoEvaluation.do');" style="cursor: pointer;">평가현황</a>
+                        <a href="javascript:fn_subPageMove('5508000','/statisticsStudentProgram.do');" style="cursor: pointer;">수강현황</a>
+                        <a href="javascript:fn_subPageMove('5513000','/statisticsMemberLogin.do');" style="cursor: pointer;">기타</a>
+                        <a href="javascript:fn_subPageMove('5523000','/statisticsStudent.do');" style="cursor: pointer;">학습자현황</a>
+                        <a href="javascript:fn_subPageMove('5524000','/statisticsOverallTable.do');" style="cursor: pointer;">통계 총괄</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 홈페이지관리 </p>
+                        <a href="javascript:fn_subPageMove('5602000','/popMngList.do');" style="cursor: pointer;">팝업관리</a>
+                        <a href="javascript:fn_subPageMove('5604000','/admin/board/selectBoardList.do?bbsId=BBSMSTR_000000000001');" style="cursor: pointer;">공지사항</a>
+                        <a href="javascript:fn_subPageMove('5605000','/uss/olh/faq/FaqListInqire.do');" style="cursor: pointer;">FAQ</a>
+                        <a href="javascript:fn_subPageMove('5606000','/admin/board/selectBoardList.do?bbsId=BBSMSTR_000000000002');" style="cursor: pointer;">자료실</a>
+                        <a href="javascript:fn_subPageMove('5607000','/admin/board/selectBoardList.do?bbsId=BBSMSTR_000000000004');" style="cursor: pointer;">1:1게시판</a>
+                        <a href="javascript:fn_subPageMove('5609000','/admin/board/selectBoardList.do?bbsId=BBSMSTR_000000000003');" style="cursor: pointer;">업무게시판</a>
+                        <a href="javascript:fn_subPageMove('5610000','/offlineList.do');" style="cursor: pointer;">오프라인 상담이력</a>
+                        <a href="javascript:fn_subPageMove('5612000','/sym/ccm/cca/EgovCcmCmmnCodeList.do');" style="cursor: pointer;">코드관리</a>
+                        <a href="javascript:fn_subPageMove('5613000','/sym/ccm/cde/EgovCcmCmmnDetailCodeList.do');" style="cursor: pointer;">코드상세관리</a>
+                        <a href="javascript:fn_subPageMove('5614000','/talkList.do');" style="cursor: pointer;">알림톡</a>
+                        <a href="javascript:fn_subPageMove('5615000','/mailList.do');" style="cursor: pointer;">이메일</a>
+                        <a href="javascript:fn_subPageMove('5616000','/employmentInfoList.do');" style="cursor: pointer;">채용정보</a>
+                        <a href="javascript:fn_subPageMove('5617000','/employmentManageList.do');" style="cursor: pointer;">채용정보 관리</a>
+                        <a href="javascript:fn_subPageMove('5618000','/programReview.do');" style="cursor: pointer;">수강후기</a>
+                        <a href="javascript:fn_subPageMove('5619000','/fieldMngList.do');" style="cursor: pointer;">홍보영상관리</a>
+                    </li>
+                    <li>
+                        <p class="pmenu_stitle"> 모니터링 </p>
+                        <a href="javascript:fn_subPageMove('6301000','/useLogList.do');" style="cursor: pointer;">로그인 이력조회</a>
+                        <a href="javascript:fn_subPageMove('6302000','/privacyLogList.do');" style="cursor: pointer;">개인정보 접근이력</a>
+                        <a href="javascript:fn_subPageMove('6304000','/menuLogList.do');" style="cursor: pointer;">메뉴별 접근이력</a>
+                        <a href="javascript:fn_subPageMove('6305000','/batchLogList.do');" style="cursor: pointer;">배치로그</a>
+                        <a href="javascript:fn_subPageMove('6306000','/processLogList.do');" style="cursor: pointer;">로그 모니터링</a>
+                        <a href="javascript:fn_subPageMove('6307000','/authChangeLogList.do');" style="cursor: pointer;">관리자권한변경이력</a>
+                        <a href="javascript:fn_subPageMove('6308000','/memberInfoTransLogList.do');" style="cursor: pointer;">회원정보 이관이력</a>
+                        <a href="javascript:fn_subPageMove('6309000','/admin/board/selectBoardList.do?bbsId=BBSMSTR_000000000006');" style="cursor: pointer;">이슈관리</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //전체메뉴 end -->
+            <!-- //2019.10.29 김다혜 전체메뉴 추가 -->
+            <!-- header s -->
+            <script type="text/javascript" src="https://edu.matchup.kr/js/decorators/top.js"></script>
+            <!-- header 탑메뉴 최대갯수는 8개까지 css 적용 처리되어 있음-->
+            <div id="header">
+                <div class="top">
+                    <h1>
+                        <a href="https://edu.matchup.kr/main/mainView.do" style="cursor: pointer;">
+                            <img src="https://edu.matchup.kr/images/mng/common/logo.png" alt="Match業 관리시스템" class="logo01">
+                        </a>
+                    </h1>
+                    <div class="info">
+                        <div>
+                            <p>
+                                <span>김동영</span>님 방문을 환영합니다.
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="javascript:fnGoMain();" style="cursor: pointer;">홈</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:actionLogout()" style="cursor: pointer;">로그아웃</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:fnChngPw()" style="cursor: pointer;">비밀번호변경</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="text-align: right; margin-top: 5px;"> 최근 접속정보 (IP : 106.254.227.226, DATE : 2025.07.31 10:28:10 (thu)) </div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <dl class="allMenu">
+                        <dt>
+                            <a href="javascript:fnSiteMapShow();" style="cursor: pointer;">전체메뉴</a>
+                        </dt>
+                        <dd></dd>
+                    </dl>
+                    <ul class="menu">
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5100000','')" class="menu01" style="cursor: pointer;"> 회원관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5300000','')" class="menu02" style="cursor: pointer;"> 기관관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5200000','')" class="menu03" style="cursor: pointer;"> 직무관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('6200000','')" class="menu04_on" style="cursor: pointer;"> 프로그램 관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5400000','')" class="menu05" style="cursor: pointer;"> 인증평가관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5500000','')" class="menu06" style="cursor: pointer;"> 통계 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('5600000','')" class="menu07" style="cursor: pointer;"> 홈페이지관리 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:fn_HeadPageMove('6300000','')" class="menu08" style="cursor: pointer;"> 모니터링 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- //header -->
+            <!-- header e -->
+            <!-- container -->
+            <div id="container">
+                <!-- //좌측메뉴 start -->
+                <!-- 프로그램 관리 -->
+                <!-- lnb -->
+                <div class="lnb">
+                    <div class="lnb_tit04">
+                        <h2> 프로그램 관리 </h2>
+                    </div>
+                    <div class="nav">
+                        <ul>
+                            <input type="hidden" name="leftMenuNm" id="leftMenuNm" value="프로그램">
+                            <li class="on">
+                                <a href="javascript:fn_subPageMove('6201000','/courseReqList.do');" style="cursor: pointer;">프로그램</a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6202000','/classReqList.do');" style="cursor: pointer;">운영회차 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6203000','/studentReceiptClassList.do');" style="cursor: pointer;">수강생정보</a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6205000','/personalEduPassList.do');" style="cursor: pointer;">개인별이수현황</a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6210000','/fieldEduPassList.do');" style="cursor: pointer;">분야별이수현황</a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6206000','passPrintStatus.do');" style="cursor: pointer;">이수증발급현황</a>
+                            </li>
+                            <li>
+                                <a href="javascript:fn_subPageMove('6209000','/orgSatisfactionSurveyList.do');" style="cursor: pointer;">교육기관 만족도 조사</a>
+                            </li>
+                            <!-- <ul>	3depth 메뉴 구성인 경우 <li>내 삽입
+                            	<li class="on"></li></ul> -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- //lnb -->
+                <!-- //좌측메뉴 end -->
+                <!-- content start -->
+                <form name="frm" id="frm" method="post">
+                    <!-- 리스트 목록 돌아가기 -->
+                    <input type="hidden" name="menuNo" id="menuNo" value="6201000">
+                    <input type="hidden" name="pageIndex" id="pageIndex" value="1">
+                    <input type="hidden" name="searchField" id="searchField" value="">
+                    <input type="hidden" name="searchProcessStatus" id="searchProcessStatus" value="">
+                    <input type="hidden" name="searchWorkDivision" id="searchWorkDivision" value="">
+                    <input type="hidden" name="searchCourseName" id="searchCourseName" value="">
+                    <input type="hidden" name="searchOrgName" id="searchOrgName" value="">
+                    <input type="hidden" name="searchAppointYear" id="searchAppointYear" value="">
+                    <input type="hidden" name="searchAdvancedFlag" id="searchAdvancedFlag" value="">
+                    <input type="hidden" name="orderCol" id="orderCol" value="EDU_PRGM_REQ_SEQ">
+                    <input type="hidden" name="ordering" id="ordering" value="DESC">
+                    <!-- 리스트 목록 돌아가기 -->
+                    <input type="hidden" name="eduPrgmReqSeq" id="eduPrgmReqSeq" value="1845">
+                    <input type="hidden" name="eduPrgmSn" id="eduPrgmSn" value="258">
+                    <input type="hidden" name="workDivCd" id="workDivCd" value="U">
+                    <input type="hidden" name="eduOrgSn" id="eduOrgSn" value="220">
+                    <input type="hidden" name="reqReason" id="reqReason" value="KMOOC연계 - 프로그램 연계 등록">
+                    <input type="hidden" name="appointYear" id="appointYear" value="2025">
+                    <input type="hidden" name="rejectReason" id="rejectReason">
+                    <input type="hidden" name="pProcSttsCd" id="pProcSttsCd">
+                    <input type="hidden" name="histFlag" id="histFlag">
+                    <input type="hidden" name="reqGbn" id="reqGbn">
+                    <input type="hidden" name="sendTitle" id="sendTitle">
+                    <input type="hidden" name="sendMsg" id="sendMsg">
+                    <input type="hidden" name="fieldCd" id="fieldCd" value="021">
+                    <input type="hidden" name="eduOrgNm" id="eduOrgNm" value="광운대학교">
+                    <input type="hidden" name="eduPrgmNm" id="eduPrgmNm" value="웨어러블 로봇 산업 동향과 제품 인증 및 특허의 이해">
+                    <input type="hidden" name="advancedFlag" id="advancedFlag" value="N">
+                    <input type="hidden" name="jobSn" id="jobSn" value="114">
+                    <input type="hidden" name="jobNm" id="jobNm" value="웨어러블 로봇 제품 기획">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content_top -->
+                        <div class="content_top">
+                            <h3 id="subTitleH3">프로그램</h3>
+                        </div>
+                        <!-- //content_top -->
+                        <!-- content_main -->
+                        <div class="content_main">
+                            <!-- sh_type01 -->
+                            <div class="sh_type01">
+                                <fieldset>
+                                    <legend class="hidden">프로그램 관리</legend>
+                                    <table>
+                                        <colgroup>
+                                            <col style="width: 18%">
+                                            <col style="width: 32%">
+                                            <col style="width: 18%">
+                                            <col style="width: 32%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>프로그램 코드</th>
+                                                <td> 258 </td>
+                                                <th>요청구분/처리구분</th>
+                                                <td> 수정 / 승인 </td>
+                                            </tr>
+                                            <tr>
+                                                <th>기준연도</th>
+                                                <td>2025</td>
+                                                <th>분야</th>
+                                                <td>로봇</td>
+                                            </tr>
+                                            <tr>
+                                                <th>기관명</th>
+                                                <td colspan="3">광운대학교</td>
+                                            </tr>
+                                            <tr>
+                                                <th>프로그램 명</th>
+                                                <td>웨어러블 로봇 산업 동향과 제품 인증 및 특허의 이해</td>
+                                                <th>영문 프로그램 명</th>
+                                                <td>Understanding wearable robot industry trends and product certification and patents</td>
+                                            </tr>
+                                            <tr>
+                                                <th>직무 명</th>
+                                                <td>웨어러블 로봇 제품 기획</td>
+                                                <th>필수교육여부</th>
+                                                <td>
+                                                    <span style="margin-right: 10px;">
+                                                        <label class="radio_box">
+                                                            <input type="radio" name="necessaryYn" value="Y" checked="" onclick="return(false);">필수 </label>
+                                                    </span>
+                                                    <span>
+                                                        <label class="radio_box">
+                                                            <input type="radio" name="necessaryYn" value="N" onclick="return(false);">선택 </label>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>세부직무</th>
+                                                <td colspan="3"> 웨어러블 로봇 산업 동향과 제품 인증 및 특허의 이해 </td>
+                                            </tr>
+                                            <tr>
+                                                <th>교육방식</th>
+                                                <td>온라인</td>
+                                                <th>학습시간</th>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <th>과정구분 </th>
+                                                <td>기초</td>
+                                                <!--22.12.27 만족도 조사 추가-->
+                                                <th>만족도조사 여부</th>
+                                                <td>
+                                                    <span style="margin-right: 10px;">
+                                                        <label class="radio_box">
+                                                            <input type="radio" name="satisfnYn" value="Y" checked="" onclick="return(false);">필수 </label>
+                                                    </span>
+                                                    <span>
+                                                        <label class="radio_box">
+                                                            <input type="radio" name="satisfnYn" value="N" onclick="return(false);">선택 </label>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>난이도</th>
+                                                <td>★★</td>
+                                                <!-- 23.01.09 강좌플랫폼 추가 -->
+                                                <th>강좌플랫폼</th>
+                                                <td>K-MOOC</td>
+                                            </tr>
+                                            <tr>
+                                                <th>교육대상</th>
+                                                <td colspan="3">웨어러블 로봇에 관심이 있는 대상자</td>
+                                            </tr>
+                                            <tr>
+                                                <th>교육목적</th>
+                                                <td colspan="3">1. 웨어러블 로봇의 역사와 구조적 특성, 관련 인증 절차에 대한 이해를 바탕으로 기술 동향을 파악할 수 있다. 2. 제품 생애주기를 고려하여 웨어러블 로봇의 기획, 요구사항 분석, 비즈니스 모델 수립 역량을 함양한다. 3. 성능 요구사항을 도출하고 이를 정량적 지표로 구성할 수 있는 분석 능력을 기른다. 4. 특허 조사 및 위험 요인 분석을 통해 웨어러블 로봇의 안전성과 신뢰성을 확보하는 방안을 설계할 수 있다.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>교수자</th>
+                                                <td colspan="3">이종희</td>
+                                            </tr>
+                                            <tr>
+                                                <th>평가방법</th>
+                                                <td colspan="3">퀴즈, 총괄평가</td>
+                                            </tr>
+                                            <tr>
+                                                <th>이수기준</th>
+                                                <td colspan="3">진도율 95%, 전체 평가 60점 이상</td>
+                                            </tr>
+                                            <tr>
+                                                <th>학습내용</th>
+                                                <td colspan="3">
+                                                    <p class="0"></p>
+                                                    <p class="0"></p>
+                                                    <p class="0"></p>
+                                                    <p class="0"></p>
+                                                    <table style="border-collapse:collapse;table-layout:fixed;border-top:none;border-left:none;border-bottom:none;border-right:none;mso-table-overlap:never;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowspan="2" style="width:38.64pt;height:42.46pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">구성</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="2" style="width:136.76pt;height:42.46pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">차시별 학습내용</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="2" style="width:51.87pt;height:42.46pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">동영상 시간</span>
+                                                                    </p>
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">(</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">분</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">)</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td colspan="3" style="width:251.76pt;height:20.48pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">교육과정 운영 방법</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:83.92pt;height:21.98pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">교수학습방법</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:83.92pt;height:21.98pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">학습자료</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:83.92pt;height:21.98pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">평가방법</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">1</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:17.43pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">웨어러블 로봇이란</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">?</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:17.43pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:30</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="24" style="width:83.92pt;height:469.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">온라인 강의</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">,</span>
+                                                                    </p>
+                                                                    <p class="1" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">온라인 모의 테스트 및 자기조절학습</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">,</span>
+                                                                    </p>
+                                                                    <p class="1" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">함께하는 </span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">Talk</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="24" style="width:83.92pt;height:469.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">동영상학습</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">,</span>
+                                                                    </p>
+                                                                    <p class="1" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">자체 제작 강의노트</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;mso-text-raise:0pt;font-size:9.0pt;">-</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">웨어러블 로봇의 역사 및 연구 동향 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:57</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:20.45pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">웨어러블 로봇 산업의 동향 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:20.45pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:16</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">2</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">웨어러블 로봇의 종류 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">25:28</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">웨어러블 로봇의 기술적 이해</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:17</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">생활 속 웨어러블 로봇</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:43</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">3</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">인증 제도</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:47</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">로봇 관련 표준 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">26:52</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">제품 인증 절차 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">29:22</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">4</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">제품 생애 주기와 제품 개발 프로세스 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:31</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:13.78pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">비즈니스 모델 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:13.78pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">29:42</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:24.10pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">제품 기획 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:24.10pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:59</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">5</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:20.21pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">수요자 요구사항 분석 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:20.21pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">25:45</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:18.54pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">기능 및 성능 요구사항 분석 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:18.54pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">26:07</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:19.95pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">비 기능적 요구사항 분석 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:19.95pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">25:43</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:56.28pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">6</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:11.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">요구사항 분석과 지표화의 예</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:11.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">25:49</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:56.28pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">수집된 요구사항의 분석과 지표화 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:20.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">26:03</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:23.64pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">설계 입력 요구사항과 검증 방법 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:23.64pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:34</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">7</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">특허와 특허 출원 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">32:07</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:58.70pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">특허 조사 방법 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:30</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">특허의 분석 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:25.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:20</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td rowspan="3" style="width:38.64pt;height:61.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">8</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">위험관리란</span>
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">?</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">31:53</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td rowspan="3" style="width:83.92pt;height:61.22pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="1" style="line-height:130%;margin-left:2.0pt;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;mso-font-width:97%;letter-spacing:-0.7pt;font-size:9.0pt;">퀴즈</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">위험도 평가 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:16.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">27:59</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:136.76pt;height:27.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:100%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">위험도 감소 대책 수립 </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:51.87pt;height:27.74pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">28:42</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:38.64pt;height:13.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span lang="EN-US" style="mso-fareast-font-family:맑은 고딕;font-family:맑은 고딕;mso-ascii-font-family:맑은 고딕;mso-font-width:100%;letter-spacing:0pt;mso-text-raise:0pt;font-size:9.0pt;">9</span>
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">주차</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td colspan="4" style="width:356.47pt;height:13.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">총괄평가</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td style="width:83.92pt;height:13.82pt;padding:1.41pt 5.10pt 1.41pt 5.10pt;border-top:solid #000000 0.28pt;border-left:solid #000000 0.28pt;border-bottom:solid #000000 0.28pt;border-right:solid #000000 0.28pt;" valign="middle">
+                                                                    <p class="0" style="line-height:130%;text-align:center;word-break:keep-all;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;">
+                                                                        <span style="font-family:맑은 고딕;mso-fareast-font-family:맑은 고딕;font-size:9.0pt;">온라인 평가</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>
+                                                        <br>
+                                                    </p>
+                                                    <p>
+                                                        <br>
+                                                    </p>
+                                                    <p></p>
+                                                    <div id="hwpEditorBoardContent" class="hwp_editor_board_content" data-hjsonver="1.0" data-jsonlen="63588">
+                                                    
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>소개 URL</th>
+                                                <td colspan="3">https://new.kmooc.kr/view/course/detail/17036</td>
+                                            </tr>
+                                            <tr>
+                                                <th>썸네일 (255x150px)</th>
+                                                <td colspan="3">
+                                                    <a href="https://edu.matchup.kr/cmm/fms/FileDown.do?atchFileId=c0c497012fc3d839e370e8b75026af99274ad96d12fa404713d01cc56916cf20&amp;fileSn=0" style="font-weight: bold; cursor: pointer;"> 핵심직무1(기초).png&nbsp;[71937&nbsp;byte] </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>K-MOOC 고유코드</th>
+                                                <td colspan="3">KWU001_1</td>
+                                            </tr>
+                                            <tr>
+                                                <th>요청사항</th>
+                                                <td colspan="3">KMOOC연계 - 프로그램 연계 등록</td>
+                                            </tr>
+                                            <tr>
+                                                <th>최초등록자</th>
+                                                <td>ifadmin</td>
+                                                <th>최초등록일</th>
+                                                <td>2025.08.06</td>
+                                            </tr>
+                                            <tr>
+                                                <th>최종수정자</th>
+                                                <td>mkyoon</td>
+                                                <th>최종수정일</th>
+                                                <td>2025.08.06</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table id="tableInput" style="display:none;">
+                                        <colgroup>
+                                            <col style="width: 18%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <span id="spnInput"></span>
+                                                </th>
+                                                <td colspan="3">
+                                                    <input type="text" name="inputReason" id="inputReason" style="width:800px;" maxlength="150">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                                <div class="btn_wrapper">
+                                    <div class="btn_2">
+                                        <!-- 목록버튼은 왼쪽, 상태버튼은 가운데, 요청버튼은 우측 정렬 -->
+                                        <!-- 목록버튼은 blue2, 긍정처리버튼은 blue1, 부정처리버튼은 gray -->
+                                        <a id="btnList" class="btn_blue2 btn_fl" style="cursor: pointer;">목록</a>
+                                        <a id="btnHist" class="btn_blue1 btn_fl" style="cursor: pointer;">이력보기</a>
+                                        <!-- 이력보기로 조회한 경우 처리버튼 전체 비활성화 -->
+                                        <!-- 승인_S -->
+                                        <a id="btnDelReq" class="btn_gray btn_fr" style="cursor: pointer;">삭제요청</a>
+                                        <a id="btnModReq" class="btn_blue1 btn_fr" style="cursor: pointer;">수정요청</a>
+                                        <!-- 승인_E -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //sh_type01 -->
+                        </div>
+                        <!-- //content_main -->
+                    </div>
+                    <!-- //content -->
+                </form>
+            </div>
+            <!-- footer s -->
+            <!-- footer -->
+            <div id="footer">
+                <p class="foot_logo">
+                    <img src="https://edu.matchup.kr/images/mng/common/logoFoot.png" alt="">
+                </p>
+                <p class="copyright">Copyright (c) Match業 ALL RIGHTS RESERVED.</p>
+            </div>
+            <!-- //footer -->
+            <!-- footer e -->
+        </div>
+        <form name="menuFrm">
+            <input name="menuNo" type="hidden">
+            <input name="chkURL" type="hidden">
+        </form>
+        <div class="ui-widget-overlay ui-front"></div>
+        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable" style="position: absolute; height: auto; width: auto; top: 1367.9px; left: 401.5px; display: block;" tabindex="-1" role="dialog" aria-describedby="divModal" aria-labelledby="ui-id-1">
+            <div id="divModal" style="display: block; width: auto; min-height: 98px; max-height: none; height: auto;" class="ui-dialog-content ui-widget-content">
+                <iframe src="./match_pop.html" frameborder="0" width="875" height="557"></iframe>
+            </div>
+            <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+            <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+        </div>
+    </body>
+</html>

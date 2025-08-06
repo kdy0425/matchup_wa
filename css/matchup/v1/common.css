@@ -18,13 +18,11 @@ body, th, td, input, select, textarea, button, code, kbd, pre, samp {
   font-family: "NanumSquareNeo", "Dotum", Arial, Tahoma, sans-serif, serif;
   color: #444;
 }
-textarea:focus,
+textarea:focus-visible,
 textarea:active,
-input:focus,
-input:active,
-a:focus,
-button:focus,
-button:active{outline:1px solid black; outline-offset: 3px !important;} /* 22.11.28 웹접근성  */
+input:focus-visible,
+a:focus-visible,
+button:focus-visible{outline:1px solid black; outline-offset: 3px !important;} /* 24.11.15 웹접근성  */
 
 
 ul, ol, dl {
@@ -210,22 +208,22 @@ button{cursor:pointer;}
 /*디자인 체크,라디오*/
 .design_check,.design_radio{position:relative;cursor:pointer;padding-left:33px;min-height:24px;display:flex;align-items:center;line-height:2rem;background-repeat:no-repeat;background-position:left center;overflow:hidden;}
 .design_check input[type="checkbox"],.design_radio input[type="radio"]{position:absolute;left:-999em;top:0;z-index:-1;}
-.design_check{background-image:url('/images/matchup/v1/checkbox_off.png');background-size:24px;}
-.design_radio{background-image:url('/images/matchup/v1/design_radio.png');background-size:24px;}
-.design_check.active{background-image:url('/images/matchup/v1/checkbox_on.png');}
-.design_radio.active{background-image:url('/images/matchup/v1/design_radio_on.png');color:#222;}
+.design_check{background-image:url('https://www.matchup.kr/images/matchup/v1/checkbox_off.png');background-size:24px;}
+.design_radio{background-image:url('https://www.matchup.kr/images/matchup/v1/design_radio.png');background-size:24px;}
+.design_check.active{background-image:url('https://www.matchup.kr/images/matchup/v1/checkbox_on.png');}
+.design_radio.active{background-image:url('https://www.matchup.kr/images/matchup/v1/design_radio_on.png');color:#222;}
 .design_check.auto,.design_radio.auto{height:auto;}
 .design_check.top,.design_radio.top{background-position:left 2px;}
 .design_check.inline + .design_check.inline,.design_radio.inline + .design_radio.inline{margin-left:80px;}
 .design_check.inline,.design_radio.inline{display:inline-block;line-height:2.4rem;}
 .design_check.single{width:16px;padding-left:16px;height:16px;}
 
-.design_check.type2{padding-left:37px;background-size:24px;background-image:url('/images/matchup/v1/checkbox_square.png');}
-.design_check.type2.active{background-image:url('/images/matchup/v1/checkbox_square_on.png');}
+.design_check.type2{padding-left:37px;background-size:24px;background-image:url('https://www.matchup.kr/images/matchup/v1/checkbox_square.png');}
+.design_check.type2.active{background-image:url('https://www.matchup.kr/images/matchup/v1/checkbox_square_on.png');}
 .design_check.type2.single{width:24px;height:24px;margin:0;padding:0;display:inline-block;}
 label.type2{display: inline-flex;align-items: center;}
 label.type2 input{margin-right:8px;}
-select{background:url('/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px; appearance:none; -webkit-appearance:none; box-sizing:border-box;}
+select{background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px; appearance:none; -webkit-appearance:none; box-sizing:border-box;}
 select::-ms-expand {display:none;}
 
 

@@ -1,0 +1,100 @@
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Match業 관리시스템 :: POPUP</title>
+        <!--jquery default js-->
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery.1.8.2.min.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/form/jquery.form.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/url/jquery.url.packed.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/selectboxes/jquery.selectboxes.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/maskPlugin/jquery.maskedinput-1.2.2.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/jquery/markupPlugin/jquery.li-scroller.1.0.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/json2.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/displayTagAjax.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/trionsoft_v0.1.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/base/gibberish-aes.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/comm.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/validation.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/workSearch.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/korToEng.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/inputUtil.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/multiFile.js"></script>
+        <script type="text/javascript" src="https://edu.matchup.kr/js/biz/comm/popup.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/font.css">
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/common.css">
+        <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/layout.css">
+        <link rel="stylesheet" type="text/css" href="./css/mng/jquery-ui.css">
+        <script type="text/javaScript" src="https://edu.matchup.kr/js/biz/course/popup/courseHistListPopup.js" defer="defer"></script>
+    </head>
+    <body>
+        <form id="dataForm" name="dataForm">
+            <input type="hidden" name="menuNo" id="menuNo" value="6201000">
+            <input type="hidden" name="eduOrgSn" id="eduOrgSn" value="220">
+            <input type="hidden" name="eduPrgmSn" id="eduPrgmSn" value="258">
+            <input type="hidden" name="pEduPrgmReqSeq" id="pEduPrgmReqSeq">
+            <div id="pop_wrap">
+                <div id="pop_container">
+                    <div class="con_inner">
+                        <div class="pop_content">
+                            <div class="tit">
+                                <h2>프로그램 요청 이력</h2>
+                            </div>
+                            <div class="con_wrap">
+                                <div class="con_box">
+                                    <!-- bd_list01 -->
+                                    <div class="sh_type01">
+                                        <div class="bd_list01" style="overflow:auto; height:260px;">
+                                            <table>
+                                                <colgroup>
+                                                    <col width="12%">
+                                                    <col width="15%">
+                                                    <col width="15%">
+                                                    <col width="15%">
+                                                    <col>
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>요청구분</th>
+                                                        <th>상태</th>
+                                                        <th>요청자</th>
+                                                        <th>요청일자</th>
+                                                        <th>반려사유</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr onclick="javascript:fn_detail('1845', 'Y');" style="cursor:pointer;">
+                                                        <td>수정</td>
+                                                        <td>승인</td>
+                                                        <td>ifadmin</td>
+                                                        <td>2025.08.06</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr onclick="javascript:fn_detail('1699', 'N');" style="cursor:pointer;">
+                                                        <td>등록</td>
+                                                        <td>승인</td>
+                                                        <td>ifadmin</td>
+                                                        <td>2025.02.27</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- //bd_list01 -->
+                                </div>
+                            </div>
+                            <div class="btn_wrapper" style="margin-bottom:0px;">
+                                <div class="btn_2">
+                                    <a href="javascript:fn_close();" class="btn_gray" style="cursor: pointer;">닫기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

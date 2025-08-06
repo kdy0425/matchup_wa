@@ -62,15 +62,18 @@ textarea::placeholder{color:#717171;opacity:1;}
 /*교육강좌*/
 .mc_section .list_action{position:absolute;right:0;top:2px;}
 .list_action .list_sort{position:relative;}
-.list_action .list_sort .sort_selected{color:#333;font-size:1.9rem;height:24px;line-height:24px;display:inline-block;padding-right:38px;background-repeat:no-repeat;background-position:right 4px center;}
+.list_action .list_sort .sort_selected{color:#333;font-size:1.9rem;height:24px;line-height:24px;display:inline-block;padding-right:38px;background-repeat:no-repeat;background-position:right 4px center;background-color: #fff;text-align: left;}
 .list_action .sort_list{max-height:351px;width:182px;top:41px;}
 .list_action .sort_list .cnt{max-height:351px;}
 
-.sort_list{display:;position:absolute;right:0;background-color:#fff;z-index:10;}
-.sort_list .scroll-wrapper{border:1px solid #d0d0d0;}
-.sort_list ul li a{display:block;padding:18px 19px;color:#333;font-size:1.5rem;}
-.sort_list ul li a:hover{text-decoration:underline;}
-/* .sort_list ul li a.active{background-color:#f8f8f8;} */
+.sort_list{position:absolute;right:0;background-color:#fff;z-index:10;}
+.sort_list .scroll-wrapper{border:1px solid #d0d0d0;border-radius:0 0 10px 10px;}
+.sort_list ul li:first-child{margin-top:10px;}
+.sort_list ul li:last-child{margin-bottom:10px;}
+.sort_list ul li a, .sort_list ul li button{display:block;color:#333;padding:10px 0 10px 16px;;background-color:#fff;font-size:13px;color:#444; border:none;width:100%;text-align:left;}
+.sort_list ul li a:hover, .sort_list ul li button:hover{text-decoration: underline;}
+.sort_list ul li a.active, .sort_list ul li button.active{color:#000;font-weight:700;text-decoration: underline;}
+
 
 .edu_dtl_list li{border:1px solid #d0d0d0;border-radius:8px;position:relative;overflow:hidden;}
 .edu_dtl_list li .thum{display:block;background-repeat:no-repeat;background-position:center center;background-size:cover;background-color:#f1f1f1;}
@@ -126,7 +129,8 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 	.list_action .list_sort .sort_selected{font-size:1.6rem;height:28px;line-height:28px;padding-right:20px;background-position:right center;background-size:10px;}
 	.list_action .sort_list{top:38px;width:150px;max-height:241px;}
 	.list_action .sort_list .cnt{max-height:241px;}
-	.list_action .sort_list ul li a{padding:12px;color:#333;font-size:1.4rem;}
+	.list_action .sort_list ul li a
+	,.list_action .sort_list ul li button{padding:12px;color:#333;font-size:1.4rem;}
 
 	.edu_dtl_list li + li{margin-top:10px;}
 	.edu_dtl_list li .thum{padding-top:61.5%;}
@@ -418,7 +422,7 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .list_wrap .lw_top .list_sort{background-color:#fff;}
 .list_wrap .lw_top .list_sort select{}
 .list_wrap .lw_top .list_sort{position:relative;}
-.list_wrap .lw_top .list_sort .sort_selected{overflow:hidden;display:block;border:1px solid #d0d0d0;height:50px;line-height:48px;border-radius:2px;color:#333;background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;}
+.list_wrap .lw_top .list_sort .sort_selected{overflow:hidden;display:block;border:1px solid #d0d0d0;height:50px;line-height:48px;border-radius:2px;color:#333;background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;text-align: left;}
 .list_wrap .lw_top .sort_list{max-height:301px;top:49px;}
 .list_wrap .lw_top .sort_list .cnt{max-height:301px;}
 
@@ -447,7 +451,7 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .paging a.pg_end{background-image:url('https://www.matchup.kr/images/matchup/v1/pg_end.png');}
 .paging a.pg_num{overflow: hidden;text-align:center;border:1px solid #d0d0d0;color:#666;font-size:1.3rem;padding:0 4px;min-width:30px;height:30px;line-height:30px;color:#666;}
 .paging a.pg_num.active{background-color:#000;border:1px solid #000;color:#fff;}
-.paging a.pg_num:focus{outline:1px solid black;outline-offset:3px !important;}
+
 @media (min-width: 1250px) {
 	.list_wrap .lw_top .left{float:left;}
 	.list_wrap .lw_top .right{float:right;}
@@ -651,7 +655,7 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 	.edu_detail .ed_top .ed_action:before{content:"";display:table;clear: both;}
 	.edu_detail .ed_top .ed_action:after{content:"";display:table;clear: both;}
 	.edu_detail .ed_top .ed_action .sns_share{float:right;}
-	.edu_detail .ed_top .ed_action .sns_share li{float:right;margin-left:5px;}
+	.edu_detail .ed_top .ed_action .sns_share li{margin-left:5px;}
 	.edu_detail .ed_top .ed_action .sns_share li .sns_btn{width:28px;height:28px;}
 	.edu_detail .ed_top .ed_action .like_btn{margin-left:0;border:1px solid #717171;height:28px;background-size:15px;padding:0 8px 0 28px;background-position: left 8px center;}
 	.edu_detail .ed_top .ed_action .like_btn.active{border:1px solid #284FA2;}
@@ -769,6 +773,7 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .lp_box .lp_item.type2{padding:0;max-height:90vh;transform:translate(calc(-50%), calc(-50%));}
 .lp_box .lp_item.type2 .inr_sc .inr_cnt{padding:40px;}
 
+.lp_box .lp_top .lp_close{position:absolute;z-index:100;right:30px;top:32px;width:19px;height:19px;background-repeat:no-repeat;background-position:center center;background-size:contain;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_close2.png');text-indent:-999em;overflow:hidden;}
 .lp_box .lp_title_box{margin-bottom:30px;position:relative;padding-right:40px;word-break:keep-all;}
 .lp_box .lp_title_box.empty{margin:0;}
 .lp_box .lp_title_box .lp_title{color:#333;font-size:2.5rem;font-weight:700;line-height:3rem;}
@@ -776,7 +781,6 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .lp_box .lp_title_box2{margin-bottom:20px;position:relative;padding-right:40px;word-break:keep-all;}
 .lp_box .lp_title_box2 .lp_title2{color:#333;font-size:2.1rem;font-weight:700;line-height:3rem;}
 .lp_box .lp_title_box2 .tit_txt2{color:#333;font-size:1.4rem;display:block;margin-top:26px;line-height:2rem;}
-.lp_box .lp_title_box .lp_close{position:absolute;z-index:100;right:0;top:2px;width:19px;height:19px;background-repeat:no-repeat;background-position:center center;background-size:contain;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_close2.png');text-indent:-999em;overflow:hidden;}
 .lp_box .lp_cnt{}
 .lp_box .lp_bg{position:absolute;left:0;top:0;width:100%;height:100%;text-indent:-999em;overflow:hidden;z-index:1;background-color:rgba(0,0,0,.4);}
 .lp_box .lp_btn{margin-top:40px;text-align:center;display:flex;justify-content: center;}
@@ -820,14 +824,14 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .form_type2 .row input[type="tel"],
 .form_type2 .row input[type="email"], 
 .form_type2 .row input[type="text"],
-.form_type2 .row select{border-radius:2px;border:1px solid #d0d0d0;padding-left:19px;height:50px;font-size:1.4rem;flex:1 1 auto;}
+.form_type2 .row select{border-radius:2px;border:1px solid #717171;padding-left:19px;height:50px;font-size:1.4rem;flex:1 1 auto;}
 .form_type2 .row input.grey,
 .form_type2 .row select.grey{background-color:#f8f8f8;}
-.form_type2 .row input[type="text"]:focus,
+/* .form_type2 .row input[type="text"]:focus,
 .form_type2 .row input[type="password"]:focus,
 .form_type2 .row input[type="tel"]:focus,
 .form_type2 .row input[type="email"]:focus,
-.form_type2 .row input[type="text"]:focus{color:#999;}
+.form_type2 .row input[type="text"]:focus{color:#999;} */
 .form_type2 .row input[type="password"]{}
 .form_type2 .row input[type="tel"]{}
 .form_type2 .row input[type="email"]{}
@@ -840,11 +844,12 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 .form_type2 .row .check_box{margin-top:10px;}
 .form_type2 .row .design_check{color:#333;font-size:1.4rem;}
 .form_type2 .row .half_radio{}
-.form_type2 .row .half_radio .design_radio{float:left;width:50%;color:#717171;font-size:1.4rem;padding-left:43px;height:50px;line-height:48px;border:1px solid #d0d0d0;border-right:0;border-radius:2px 0 0 2px;background-image:url('../../../images/matchup/v1/icon_check_off.png');background-size:14px;background-position:17px center;background-repeat:no-repeat;}
-.form_type2 .row .half_radio .design_radio + .design_radio{border-right:1px solid #d0d0d0;border-radius:0 2px 2px 0;}
-.form_type2 .row .half_radio .design_radio.active{border:1px solid #2b52a5;color:#2b52a5;border-right:0;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_check_on.png');}
+.form_type2 .row .half_radio .design_radio{float:left;width:50%;color:#717171;font-size:1.4rem;padding-left:43px;height:50px;line-height:48px;border:1px solid #717171;border-right:0;border-radius:2px 0 0 2px;background-image:url('../../../images/matchup/v1/icon_check_off.png');background-size:14px;background-position:17px center;background-repeat:no-repeat;}
+.form_type2 .row .half_radio .design_radio + .design_radio{border-right:1px solid #717171;border-radius:0 2px 2px 0;}
+.form_type2 .row .half_radio .design_radio.active{border:3px solid #2b52a5;color:#2b52a5;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_check_on.png');}
 .form_type2 .row .half_radio .design_radio.active + .design_radio{border-left:1px solid #2b52a5;}
-.form_type2 .row .half_radio .design_radio + .design_radio.active{border-left:1px solid #2b52a5;border-right:1px solid #2b52a5;}
+/* .form_type2 .row .half_radio .design_radio + .design_radio.active{border-left:1px solid #2b52a5;border-right:1px solid #2b52a5;} */
+.form_type2 .row .half_radio .design_radio.active + .design_radio{border-left:0;}
 .join_form .form_btn{margin-top:50px;}
 
 .child_agree{margin-bottom:30px;}
@@ -1245,8 +1250,8 @@ div .star-rating .yStar{background-position:left bottom; line-height:0; vertical
 
 }
 .form_select{position:relative;width:100%;}
-.form_select .sort_selected{display:block;width:100%;border-radius:2px;border:1px solid #d0d0d0;padding-left:19px;line-height:48px;height:50px;font-size:1.5rem;color:#333;
-background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;}
+.form_select .sort_selected{display:block;width:100%;border-radius:2px;border:1px solid #717171;padding-left:19px;line-height:48px;height:50px;font-size:1.5rem;color:#333;
+background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;text-align: left;}
 .form_select.size_sm{width:250px;}
 .form_select .sort_list{width:100%;max-height:301px;background-color:#fff;}
 .form_select  .sort_list .cnt{max-height:301px;}
@@ -1266,8 +1271,8 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 	.write_table select{width:250px;border-radius:2px;border:1px solid #d0d0d0;padding-left:19px;height:50px;font-size:1.5rem;color:#333;}
 	.write_table textarea{width:100%;min-width:100%;max-width:100%;border-radius:2px;border:1px solid #d0d0d0;padding:19px;min-height:470px;height:470px;font-size:1.5rem;color:#333;}
 
-	.write_table tbody tr td .edit_pc{}
-	.write_table tbody tr td .edit_mobile{display:none;}
+	.write_table tbody tr td .edit_pc,.write_table tbody tr th .edit_pc{}
+	.write_table tbody tr td .edit_mobile,.write_table tbody tr th .edit_mobile{display:none;}
 
 	.write_table tbody tr td .write_file{}
 	.write_table tbody tr td .write_file .design_file{display:inline-block;width:80px;height:30px;line-height:28px;text-align:center;border:1px solid #000;font-size:1.4rem;color:#000;border-radius:2px;transition:all 0.2s;cursor:pointer;}
@@ -1275,9 +1280,9 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 	.write_table tbody tr td .write_file #df_input{width:0;height:0;border:0;background-color:transparent;overflow:hidden;}
 	.write_table tbody tr td .write_file .df_uploaded{}
 	.write_table tbody tr td .write_file .df_uploaded .list{}
-	.write_table tbody tr td .write_file .df_uploaded .list li{margin-top:16px;padding-left:18px;min-height:18px;background-repeat:no-repeat;background-position:left 2px;background-size:auto 16px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_file.png');position:relative;}
+	.write_table tbody tr td .write_file .df_uploaded .list li{display:flex;margin-top:16px;padding-left:18px;min-height:18px;background-repeat:no-repeat;background-position:left 2px;background-size:auto 16px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_file.png');position:relative;}
 	.write_table tbody tr td .write_file .df_uploaded .list li + li{margin-top:10px;}
-	.write_table tbody tr td .write_file .df_uploaded .list li .file_name{display:inline-block;color:#666;font-size:1.3rem;line-height:1.8rem;padding-top:2px;max-width:calc(100% - 40px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+	.write_table tbody tr td .write_file .df_uploaded .list li .file_name{display:inline-block;color:#666;font-size:1.3rem;line-height:1.8rem;max-width:calc(100% - 40px);text-overflow:ellipsis;}
 	.write_table tbody tr td .write_file .df_uploaded .list li .df_remove{margin-left:10px;text-indent:-999em;overflow:hidden;border:0;background-color:#fff;width:14px;height:20px;background-repeat:no-repeat;background-position:center 4px;background-size:10px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_delete.png');}
 	
 	.write_wrap .df_btn_box{margin-top:50px;}
@@ -1309,17 +1314,17 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 	.write_table select{width:100%;border-radius:2px;border:1px solid #d0d0d0;padding-left:16px;height:50px;font-size:1.4rem;color:#333;}
 	.write_table textarea{width:100%;min-width:100%;max-width:100%;border-radius:2px;border:1px solid #d0d0d0;padding:16px;height:150px;min-height:150px;font-size:1.4rem;color:#333;}
 	
-	.write_table tbody tr td .edit_pc{display:none;}
-	.write_table tbody tr td .edit_mobile{}
+	.write_table tbody tr td .edit_pc,.write_table tbody tr th .edit_pc{display:none;}
+	.write_table tbody tr td .edit_mobile,.write_table tbody tr th .edit_mobile{}
 
 	.write_table tbody tr td .write_file{}
 	.write_table tbody tr td .write_file .design_file{display:inline-block;width:78px;height:30px;line-height:28px;text-align:center;border:1px solid #000;font-size:1.3rem;color:#000;border-radius:2px;}
 	.write_table tbody tr td .write_file #df_input{width:0;height:0;border:0;background-color:transparent;overflow:hidden;}
 	.write_table tbody tr td .write_file .df_uploaded{}
 	.write_table tbody tr td .write_file .df_uploaded .list{}
-	.write_table tbody tr td .write_file .df_uploaded .list li{margin-top:16px;padding-left:21px;min-height:18px;background-repeat:no-repeat;background-position:4px 2px;background-size:auto 16px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_file.png');position:relative;}
+	.write_table tbody tr td .write_file .df_uploaded .list li{display:flex;margin-top:16px;padding-left:21px;min-height:18px;background-repeat:no-repeat;background-position:4px 2px;background-size:auto 16px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_file.png');position:relative;}
 	.write_table tbody tr td .write_file .df_uploaded .list li + li{margin-top:10px;}
-	.write_table tbody tr td .write_file .df_uploaded .list li .file_name{display:inline-block;color:#666;font-size:1.3rem;line-height:1.8rem;padding-top:2px;max-width:calc(100% - 40px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+	.write_table tbody tr td .write_file .df_uploaded .list li .file_name{display:inline-block;color:#666;font-size:1.3rem;line-height:1.8rem;max-width:calc(100% - 40px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 	.write_table tbody tr td .write_file .df_uploaded .list li .df_remove{margin-left:3px;text-indent:-999em;overflow:hidden;border:0;background-color:#fff;width:14px;height:20px;background-repeat:no-repeat;background-position:center 4px;background-size:10px;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_delete.png');}
 	
 	.write_wrap .df_btn_box{margin-top:50px;}
@@ -1372,8 +1377,8 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 	.list_intro .ct li{}
 	.list_intro .ct li + li{}
 
-	.mp_table table tbody tr td .cpt_g{font-size:1.4rem;background-size:13px;padding-left:23px;}
-	.mp_table table tbody tr td .cpt_b{font-size:1.4rem;background-size:13px;padding-left:23px;}
+	.mp_table table tbody tr td .cpt_g{font-size:1.4rem;background-size:13px}
+	.mp_table table tbody tr td .cpt_b{font-size:1.4rem;background-size:13px}
 
 	.mp_table table tbody tr td .cpt_g + .cpt_g{margin-top:13px;}
 	.mp_table table tbody tr td .cpt_b + .cpt_b{margin-top:13px;}
@@ -1498,14 +1503,14 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 .itd_section .itd_box.vision_bottom{text-align:center;}
 
 .itd_section .itd_box .itd_target{position:relative;width:324px;height:286px;margin:40px auto 0;}
-.itd_section .itd_box .itd_target:before{content:"";position: absolute;left:50%;top:50%;transform: translate(-50%,-50%);width:240px;height:240px;border-radius: 50%;background: rgb(93,200,156);background: linear-gradient(139deg, rgba(93,200,156,1) 0%, rgba(89,149,191,1) 50%, rgba(96,128,191,1) 100%);}
+.itd_section .itd_box .itd_target:before{content:"";position: absolute;left:50%;top:50%;transform: translate(-50%,-50%);width:240px;height:240px;border-radius: 50%;background: #395896;/* background: linear-gradient(139deg, rgba(93,200,156,1) 0%, rgba(89,149,191,1) 50%, rgba(96,128,191,1) 100%) */;}
 .itd_section .itd_box .itd_target:after{content:"";position: absolute;left:50%;top:50%;transform: translate(-50%,-50%);width:224px;height:224px;border-radius: 50%;background:#fff;}
 .itd_section .itd_box .itd_target li{width:120px;height:120px;border:3px solid #000;border-radius:50%;padding-top:28px;position:absolute;background-color: #fff;z-index: 10;}
 .itd_section .itd_box .itd_target li .tit{display:block;font-size:1.4rem;font-weight:600;}
 .itd_section .itd_box .itd_target li .cnt{display:block;font-size:1.4rem;margin-top:10px;line-height:2rem;}
 .itd_section .itd_box .itd_target li.company{border-color:#385796;color:#395896;top:0;left:0;}
-.itd_section .itd_box .itd_target li.edu{border-color:#386f96;color:#386f96;top:0;right:0;}
-.itd_section .itd_box .itd_target li.student{border-color:#33966d;color:#33966d;bottom:0;left:50%;transform:translate(-50%, 0)}
+.itd_section .itd_box .itd_target li.edu{border-color:#395896;color:#395896;top:0;right:0;}
+.itd_section .itd_box .itd_target li.student{border-color:#395896;color:#395896;bottom:0;left:50%;transform:translate(-50%, 0)}
 
 .itd_section .itd_box .txt_check{color:#497ef0;font-size:1.4rem;line-height:2rem;background-repeat:no-repeat;background-image:url('https://www.matchup.kr/images/matchup/v1/icon_sub_blue.png');font-weight:400;}
 
@@ -1520,14 +1525,14 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 .itd_section .program_flow .list li + li{}
 .itd_section .program_flow .list li:nth-child(1){background-color:#385796;}
 .itd_section .program_flow .list li:nth-child(1) .tit{color:#385796;}
-.itd_section .program_flow .list li:nth-child(2){background-color:#386f96;}
-.itd_section .program_flow .list li:nth-child(2) .tit{color:#386f96;}
+.itd_section .program_flow .list li:nth-child(2){background-color:#395896;}
+.itd_section .program_flow .list li:nth-child(2) .tit{color:#395896;}
 .itd_section .program_flow .list li:nth-child(3){background-color:#338096;}
 .itd_section .program_flow .list li:nth-child(3) .tit{color:#338096;}
 .itd_section .program_flow .list li:nth-child(4){background-color:#339596;}
 .itd_section .program_flow .list li:nth-child(4) .tit{color:#339596;}
-.itd_section .program_flow .list li:nth-child(5){background-color:#33966d;}
-.itd_section .program_flow .list li:nth-child(5) .tit{color:#33966d;}
+.itd_section .program_flow .list li:nth-child(5){background-color:#395896;}
+.itd_section .program_flow .list li:nth-child(5) .tit{color:#395896;}
 
 .itd_section .program_flow .list li:last-child:after{display:none;}
 .itd_section .program_flow .list li .tit{display:inline-block;background-color:#fff;font-size:1.4rem;font-weight:600;}
@@ -1815,6 +1820,8 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 .way .way_box > ul > li .tit.line1{background-color:#263c96;}
 .way .way_box > ul > li .tit.line2{background-color:#389243;}
 .way .way_box > ul > li .tit.line3{background-color:#7a3dba;}
+.way .way_box > ul > li .tit.line5{background-color:#9225ca;}
+.way .way_box > ul > li .tit.line9{background-color:#d1a62c;}
 .way .way_box > ul > li p{color:#666;font-size:1.4rem;line-height:2rem;}
 
 .way .way_box .dot{}
@@ -1882,8 +1889,8 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 .terms_cnt .terms_box .temrs_focus{position:absolute;left:0;top:-150px;}
 .terms_cnt .terms_box{margin-top:77px;position:relative;}
 .terms_cnt .terms_box + .terms_box{}
-.terms_cnt .terms_box h4{color:#333;font-size:1.7rem;font-weight:600;margin-bottom:25px;}
-.terms_cnt .terms_box h5 {color: #333;font-size: 2.1rem;font-weight: 600;margin-bottom: 25px;}
+.terms_cnt .terms_box h4 {color: #333;font-size: 2.1rem;font-weight: 600;margin-bottom: 25px;}
+.terms_cnt .terms_box h5{color:#333;font-size:1.7rem;font-weight:600;margin-bottom:25px;}
 .terms_cnt .terms_box .ol_type1{}
 .terms_cnt .terms_box .ol_type1 li{}
 .terms_cnt .terms_box .ol_type1 > li + li{margin-top:21px;}
@@ -2070,7 +2077,7 @@ background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.
 .search_result .result_box .pj_list{margin-top:30px;}
 .search_result .result_box .pj_list > li{}
 .search_result .result_box .pj_list > li + li{margin-top:20px;}
-.search_result .result_box .pj_list > li a{display:block;border:1px solid #d0d0d0;border-radius:2px;padding:30px 240px 30px 28px;position:relative;}
+.search_result .result_box .pj_list > li a{display:block;border:1px solid #d0d0d0;border-radius:2px;padding:30px 30px 30px 28px;position:relative;}
 .search_result .result_box .pj_list > li a:hover{border:1px solid #000;}
 .search_result .result_box .pj_list > li .subject{display:block;color:#333;font-size:1.7rem;}
 .search_result .result_box .pj_list > li .cnt{margin-top:18px;color:#666;font-size:14px;}
@@ -2351,17 +2358,6 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 	.rd_table tbody tr td.cnt2{margin-top:2px;}
 }
 
-/* main selectbox copy lkw 2023.12.06 */
-.sort_list{position:absolute;right:0;background-color:#fff;z-index:10;}
-.sort_list .scroll-wrapper{border:1px solid #d0d0d0;border-radius:0 0 10px 10px;}
-.sort_list ul li:first-child{margin-top:10px;}
-.sort_list ul li:last-child{margin-bottom:10px;}
-.sort_list ul li a:hover{text-decoration: underline;}
-.sort_list ul li a{display:block;color:#333;padding:10px 0 10px 16px;;background-color:#fff;font-size:13px;color:#444;}
-.sort_list ul li a:hover{text-decoration: underline;}
-.sort_list ul li a.active{color:#000;font-weight:700;text-decoration: underline;}
-
-
 .process_list2 > li .cnt_box{}
 .process_list2 > li .pl_logo{display:block;}
 .process_list2 > li .pl_logo .pl_img{display:flex;width:100%;height:100%;align-items:center;}
@@ -2464,13 +2460,13 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 }
 
 .check_list_inline{display:flex;flex-wrap: wrap;}
-.check_list_inline .checkbox_item{margin:4px 30px 4px 0;}
+.check_list_inline .checkbox_item{margin:4px 48px 4px 0;}
 .checkbox_item{display: inline-flex;align-items: center;}
 [type="checkbox"] {width: 20px;height: 20px;background-color:#fff;accent-color: #284FA2;vertical-align: middle;margin-right:8px;border-radius:2px;border:1px solid #717171;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 [type="checkbox"]:checked{background-position:center center;background-repeat:no-repeat;background-color: #284FA2;background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m12 1.5-6.581 7L2 4.864' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
 [type="radio"] {width: 20px;height: 20px;accent-color: #284FA2;vertical-align: middle;margin-right:8px;}
 [type="checkbox"] + label{}
-.search_form{background-color: #f8f8f8;padding:30px;margin-bottom:30px;}
+.search_form{background-color: #f8f8f8;margin-bottom:30px;}
 .search_form .row{display: flex;align-items: start;}
 .search_form .row + .row{margin-top:10px;}
 .search_form .row .sf_title{width:100px;height: 50px;display: flex;align-items: center;color:#333;font-size:15px;font-weight:700;}
@@ -2484,6 +2480,22 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 .search_form .list_search .frm_txt::placeholder{color:#717171;opacity:1;}
 .search_form .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;margin-top:10px;}
 .search_form .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;display: block;margin:10px auto 0;}
+
+.search_form2{background-color: #f8f8f8;margin-bottom:30px;padding:30px;}
+.search_form2 .row{display: flex;align-items: start;}
+.search_form2 .row + .row{margin-top:10px;}
+.search_form2 .row .sf_title{width:100px;height: 50px;display: flex;align-items: center;color:#333;font-size:15px;font-weight:700;}
+.search_form2 .row .sf_content{flex:1 1 auto;width: 1%;min-height:50px;display: flex;align-items: center;}
+.search_form2 .row .item{margin-right:10px;}
+.search_form2 .list_sort{position: relative;width:200px;}
+.search_form2 .list_sort .sort_selected{overflow:hidden;display:block;border:1px solid #d0d0d0;height:50px;line-height:48px;border-radius:2px;color:#333;background:url('https://www.matchup.kr/images/matchup/v1/icon_s_link_arrow_down.png') no-repeat right 16px center; background-size:16px;text-align: left;background-color: #fff;width: 200px;font-size: 1.5rem;padding-left: 18px;}
+.search_form2 .sort_list{width:100%;max-height: 301px;top: 49px;}
+.search_form2 .sort_list .cnt{max-height: 301px;}
+.search_form2 .list_search .frm_txt{float:left;height:50px;border:1px solid #d0d0d0;border-radius:2px;width:250px;padding-left:18px;font-weight:300;}
+.search_form2 .list_search .frm_txt::placeholder{color:#717171;opacity:1;}
+.search_form2 .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;margin-top:10px;}
+.search_form2 .list_search .frm_btn{height:50px;background-color:#6475a0;border-radius:2px;border:0;color:#fff;font-size:1.5rem;width: 93px;display: block;margin:10px auto 0;}
+
 
 @media (max-width:768px){
 	.check_list_inline .checkbox_item{margin:4px 15px 4px 0;}
@@ -2504,6 +2516,20 @@ background-image: url("data:image/svg+xml,%3Csvg width='11' height='15' viewBox=
 	.search_form .sort_list .cnt{max-height: 301px;}
 	.search_form .list_search .frm_txt{height:42px;width:100%;padding-left:10px;}
 	.search_form .list_search .frm_btn{height:42px;font-size:1.4rem;width: 100%;}
+	
+	.search_form2{padding:20px 15px;margin-bottom:20px;padding:30px;}
+	.search_form2 .row{display:block;}
+	.search_form2 .row + .row{margin-top:15px;}
+	.search_form2 .row .sf_title{width: 100%;height: auto;font-size:14px;margin-bottom:10px;}
+	.search_form2 .row .sf_content{height: auto;width: 100%;flex-wrap: wrap;min-height: 0;}
+	.search_form2 .row .item{width: 100%;margin-right:0;}
+	.search_form2 .row .item + .item{margin-top:5px;}
+	.search_form2 .list_sort{width:100%;}
+	.search_form2 .list_sort .sort_selected{height:42px;line-height:40px;padding-left:10px;font-size:13px;}
+	.search_form2 .sort_list{width:100%;max-height: 301px;top: 41px;}
+	.search_form2 .sort_list .cnt{max-height: 301px;}
+	.search_form2 .list_search .frm_txt{height:42px;width:100%;padding-left:10px;}
+	.search_form2 .list_search .frm_btn{height:42px;font-size:1.4rem;width: 100%;}
 }
 
 @media (max-width: 1250px) {
