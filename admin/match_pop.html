@@ -28,6 +28,64 @@
         <link rel="stylesheet" type="text/css" href="https://edu.matchup.kr/css/mng/layout.css">
         <link rel="stylesheet" type="text/css" href="./css/mng/jquery-ui.css">
         <script type="text/javaScript" src="https://edu.matchup.kr/js/biz/course/popup/courseHistListPopup.js" defer="defer"></script>
+
+        <style>
+        .card_blue * {
+            box-sizing: border-box;
+        }
+        .card_blue + .card_blue{
+            margin-top:10px;
+        }
+        .card_blue > .title {
+            border-radius: 8px 8px 0 0;padding:10px 20px;background-color: #10337E;color:#fff;font-size:14px;font-weight: 700;
+        }
+        .card_blue .content {
+            padding:5px 15px;background-color: #FAFCFF;border-radius: 0 0 8px 8px;border:1px solid #CDDAEE;
+        }
+        .card_blue .content ol {
+            display: flex;flex-wrap: wrap;gap:1px 0;background-color: #E6ECF4;
+        }
+        .card_blue .content ol li {
+            background-color: #FAFCFF;display: flex;flex-wrap: wrap;padding:11px 0 10px;width:100%;
+        }
+        .card_blue .content ol li .label {
+            display: flex;color:#000;font-size:12px;font-weight:600;word-break: keep-all;
+        }
+        .card_blue .content ol li .label .num{
+            margin-right:4px;margin-top:1px;border-radius:50%;width:16px;height:16px;line-height:16px;text-align:center;background-color:#10337E;color:#fff;font-size:10px;
+        }
+        .card_blue .content ol li.col .label{
+        }
+        .card_blue .content ol li.col .label:after{
+            content:"";width:1px;height:8px;background-color: #B0B0B0;margin:6px 8px 0;
+        }
+        .card_blue .content ol li .cont {
+            color:#000;font-size:12px;
+        }
+        .card_blue .content ol li.row .label {
+            margin-bottom:12px;letter-spacing: -0.4px;
+        }
+        .card_blue .content ol li.row .cont {
+            width: 100%;
+        }
+        .card_blue .content ol li .cont .re {
+            padding-left:34px;line-height: 1.2;background-position: left 20px center;background-repeat: no-repeat;background-image: url("data:image/svg+xml,%0A%3Csvg width='12' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23a)' stroke='%2310337E' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.5 3 10 5.5 7.5 8'/%3E%3Cpath d='M2 0v3.5a2 2 0 0 0 2 2h6'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h12v12H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+        }
+        .card_blue .content ol li .cont .re + .re {
+            margin-top:5px;
+        }
+        .card_blue .content ol li .cont .box {
+            border:1px solid #CDDAEE;border-radius:4px;background-color: #fff;padding:7px 10px;width: 100%;
+        }
+        .checked_point{display: flex;flex-direction: column;gap: 12px;padding:8px 6px;}
+        .checked_point .desc{display: flex;justify-content: space-between;}
+        .checked_point .desc div{font-weight:700;background-repeat: no-repeat;line-height: 14px;height: 16px;}
+        .checked_point .desc .left{padding-left:18px;background-position: left center;background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.667 8H3.333M8 12.667 3.333 8 8 3.333' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+        .checked_point .desc .right{padding-right:18px;background-position: right center;background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.333 8h9.334M8 12.667 12.667 8 8 3.333' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+        .checked_point .point{display: flex;justify-content: space-between;}
+        .checked_point .point div{width: 32px;height: 32px;border-radius: 50%;line-height: 32px;text-align: center;font-weight:700;font-size: 12px;color: #10347E;background-color: #EDF5FF;}
+        .checked_point .point div.checked{background-color: #10347E;text-indent:-999em;overflow: hidden;background-position: center center;background-repeat: no-repeat;background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m12 1.5-6.581 7L2 4.864' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+        </style>
     </head>
     <body>
         <form id="dataForm" name="dataForm">
@@ -40,50 +98,91 @@
                     <div class="con_inner">
                         <div class="pop_content">
                             <div class="tit">
-                                <h2>프로그램 요청 이력</h2>
+                                <h2>개인배경</h2>
                             </div>
                             <div class="con_wrap">
                                 <div class="con_box">
-                                    <!-- bd_list01 -->
-                                    <div class="sh_type01">
-                                        <div class="bd_list01" style="overflow:auto; height:260px;">
-                                            <table>
-                                                <colgroup>
-                                                    <col width="12%">
-                                                    <col width="15%">
-                                                    <col width="15%">
-                                                    <col width="15%">
-                                                    <col>
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <th>요청구분</th>
-                                                        <th>상태</th>
-                                                        <th>요청자</th>
-                                                        <th>요청일자</th>
-                                                        <th>반려사유</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr onclick="javascript:fn_detail('1845', 'Y');" style="cursor:pointer;">
-                                                        <td>수정</td>
-                                                        <td>승인</td>
-                                                        <td>ifadmin</td>
-                                                        <td>2025.08.06</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr onclick="javascript:fn_detail('1699', 'N');" style="cursor:pointer;">
-                                                        <td>등록</td>
-                                                        <td>승인</td>
-                                                        <td>ifadmin</td>
-                                                        <td>2025.02.27</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                    
+                                    <!-- 2025-08-06 -->
+                                    <div class="card_blue">
+                                        <h3 class="title">기본 사항</h3>
+                                        <div class="content">
+                                            <ol>
+                                                <li class="col" style="width:136px">
+                                                    <div class="label"><span class="num">1</span>성별</div>
+                                                    <div class="cont">남자</div>
+                                                </li>
+                                                <li class="col" style="width:146px">
+                                                    <div class="label"><span class="num">2</span>나이</div>
+                                                    <div class="cont">만 39세</div>
+                                                </li>
+                                                <li class="col" style="width:calc(100% - 282px);">
+                                                    <div class="label"><span class="num">3</span>거주지역</div>
+                                                    <div class="cont">서울특별시</div>
+                                                </li>
+                                                <li class="col">
+                                                    <div class="label"><span class="num">4</span>학습자의 직업은 무엇입니까?</div>
+                                                    <div class="cont">2. 연구직 및 공학 기술직</div>
+                                                </li>
+                                                <li class="row">
+                                                    <div class="label"><span class="num">5</span>본 교육과정을 수강한 목적은 무엇입니까?(복수 응답 허용)</div>
+                                                    <div class="cont">
+                                                        <div class="re">2. 현재 직무에 필요한 실무역량 향상을 위해</div>
+                                                        <div class="re">8. 기타(직접입력) : 열심히 공부해서 돈 많이 벌고 싶어요. </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
                                         </div>
                                     </div>
-                                    <!-- //bd_list01 -->
+
+                                    <div class="card_blue">
+                                        <h3 class="title">기타 문항</h3>
+                                        <div class="content">
+                                            <ol>
+                                                <li class="row">
+                                                    <div class="label"><span class="num">1</span>매치업 교육과정 수강 전과 비교할 때, 직무 수행에 필요한 지식과 역량이 향상되었다고 생각한다.</div>
+                                                     <div class="cont">
+                                                        <div class="re">5. 매우 향상되었다.</div>
+                                                    </div>
+                                                </li>
+                                                <li class="row">
+                                                    <div class="label"><span class="num">2</span>매치업 교육과정을 친구나 동료, 지인 등에 추천할 의사가 있다.</div>
+                                                    <div class="cont">
+                                                        <div class="box">
+                                                            <div class="checked_point">
+                                                                <div class="desc">
+                                                                    <div class="left">전혀 그렇지 않다</div>
+                                                                    <div class="right">매우 그렇다</div>
+                                                                </div>
+                                                                <div class="point">
+                                                                    <div>1</div>
+                                                                    <div>2</div>
+                                                                    <div>3</div>
+                                                                    <div>4</div>
+                                                                    <div>5</div>
+                                                                    <div>6</div>
+                                                                    <div>7</div>
+                                                                    <div>8</div>
+                                                                    <div class="checked">9</div>
+                                                                    <div>10</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="row">
+                                                    <div class="label"><span class="num">3</span>매치업 교육과정에서 좋았던 점과 개선이 필요한 사항을 자유롭게 작성해 주시기 바랍니다.</div>
+                                                    <div class="cont">
+                                                        <div class="box">
+                                                            교육과정이 흥미롭고 재미 있었습니다.<br/>다른 교육들도 기대가 되네요.
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <!-- //2025-08-06 -->
+                                     
                                 </div>
                             </div>
                             <div class="btn_wrapper" style="margin-bottom:0px;">

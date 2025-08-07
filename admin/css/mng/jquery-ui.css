@@ -401,7 +401,7 @@ button.ui-button::-moz-focus-inner {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: .2em;
+	/* padding: .2em; */
 	outline: 0;
 }
 .ui-dialog .ui-dialog-titlebar {
@@ -428,7 +428,7 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-content {
 	position: relative;
 	border: 0;
-	padding: .5em 1em;
+	/* padding: .5em 1em; */
 	background: none;
 	overflow: auto;
 }
@@ -811,8 +811,8 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #aaaaaa/*{borderColorContent}*/;
-	background: #ffffff/*{bgColorContent}*/ url(http://code.jquery.com/ui/1.10.0/themes/base/images/ui-bg_flat_75_ffffff_40x100.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
+	/* border: 1px solid #aaaaaa; */
+	background: #ffffff url(http://code.jquery.com/ui/1.10.0/themes/base/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	color: #222222/*{fcContent}*/;
 }
 .ui-widget-content a {
@@ -1151,25 +1151,25 @@ body .ui-tooltip {
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-	border-top-left-radius: 4px/*{cornerRadius}*/;
+	/* border-top-left-radius: 4px; */
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	border-top-right-radius: 4px/*{cornerRadius}*/;
+	/* border-top-right-radius: 4px; */
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-	border-bottom-left-radius: 4px/*{cornerRadius}*/;
+	/* border-bottom-left-radius: 4px; */
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-	border-bottom-right-radius: 4px/*{cornerRadius}*/;
+	/* border-bottom-right-radius: 4px; */
 }
 
 /* Overlays */
